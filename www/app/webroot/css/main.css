@@ -56,11 +56,11 @@ h4 {
 }
 
 /* Navigation and tabs */
-#nav {
+.nav {
 	height: 32px;
 }
 
-#nav li {
+.nav li {
 	float: left;
 }
 

@@ -135,7 +135,7 @@ class UsersController extends AppController
 		$this->set('activation_url', Router::url(array(
 			'controller' => 'users',
 			'action' => 'activate',
-			'id' => $this->User->field('id'),
+			$this->User->field('id'),
 			$this->User->getActivationHash()
 		), true));
 		$this->set('base_url', Router::url('/', true));

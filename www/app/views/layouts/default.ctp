@@ -18,7 +18,7 @@
 		<div id="header">
 			<?php echo $header->h1('Full Metal Jewelry');?>
 		</div>
-		<div id="nav">
+		<div class="nav">
 			<ul>
 				<li><?php echo $this->Button->link('Home', '/');?></li>
 				<?php if ($Auth):?>
@@ -29,20 +29,21 @@
 					<li><?php echo $this->Button->link('Register', '/users/register');?></li>
 				<?php endif;?>
 			</ul>
-
-			<?php
-			if ($adminControllers) {
-			echo '<ul>';
-				foreach ($adminControllers as $controller) {
-					echo '<li><a href="/admin/' . strtolower($controller) . '/index">' . $controller . '</a></li>';
-				}
-				echo '</ul>';
-			}
-			?>
 		</div>
 		<div id="content">
 			<?php echo $session->flash(); ?>
 			<?php echo $content_for_layout; ?>
+		</div>
+		<div class="nav">
+			<?php
+			if ($adminControllers) {
+			echo '<ul>';
+				foreach ($adminControllers as $controller) {
+					echo '<li>' . $this->Button->link($controller, '/admin/' . strtolower($controller) . '/index') . '</li>';
+				}
+				echo '</ul>';
+			}
+			?>
 		</div>
 		<div id="footer">
 			<p>&copy; 2010 Full Metal Jewelry
