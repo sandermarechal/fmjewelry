@@ -27,6 +27,11 @@ class User extends AppModel
 		'password' => array('alphaNumeric'),
 	);
 
+	/** @var array One-to-many relationships */
+	public $hasMany = array(
+		'Address' => array('dependent' => true)
+	);
+
 	/** @var array Many-to-many relationships */
 	public $hasAndBelongsToMany = array(
 		'Group' => array('unique' => true)
