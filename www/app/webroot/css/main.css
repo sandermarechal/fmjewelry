@@ -299,7 +299,7 @@ table tr.altrow td {
 	background: #f4f4f4;
 }
 td.actions {
-	text-align: center;
+	text-align: left;
 	white-space: nowrap;
 }
 td.actions a {
