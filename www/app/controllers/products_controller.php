@@ -42,20 +42,9 @@ class ProductsController extends AppController
 		}
 
 		// Get the product
-		$this->Product->contain(array('Category', 'Part', 'Part.PartOption'));
+		$this->Product->contain(array('Category'));
 		$product = $this->Product->findBySlug($slug);
-		$product['Product']['price_default'] = $this->Product->getDefaultPrice($product['Product']['id']);
-		$product['Product']['price_min'] = $this->Product->getMinimumPrice($product['Product']['id']);
-
-		// List all prices
-		$prices = array();
-		foreach ($product['Part'] as $part) {
-			foreach ($part['PartOption'] as $option) {
-				$prices[$option['id']] = (float) $option['price'];
-			}
-		}
-
-		$this->set(compact('product', 'prices'));
+		$this->set(compact('product'));
 	}
 
 	public function admin_index()
@@ -71,11 +60,8 @@ class ProductsController extends AppController
 			$this->redirect(array('action'=>'index'));
 		}
 
-		$this->Product->contain(array('Category', 'Part', 'Part.PartOption', 'User'));
+		$this->Product->contain(array('Category', 'User'));
 		$product = $this->Product->read(null, $id);
-		$product['Product']['price_default'] = $this->Product->getDefaultPrice($id);
-		$product['Product']['price_min'] = $this->Product->getMinimumPrice($id);
-
 		$this->set('product', $product);
 	}
 
@@ -107,9 +93,8 @@ class ProductsController extends AppController
 
 		$categories = $this->Product->Category->find('list');
 		$images = $this->_getImages();
-		$parts = $this->Product->Part->find('list');
 
-		$this->set(compact('categories', 'images', 'parts'));
+		$this->set(compact('categories', 'images'));
 		$this->render('admin_edit');
 	}
 
@@ -152,9 +137,7 @@ class ProductsController extends AppController
 
 		$categories = $this->Product->Category->find('list');
 		$images = $this->_getImages();
-		$parts = $this->Product->Part->find('list');
-
-		$this->set(compact('categories','images', 'parts'));
+		$this->set(compact('categories','images'));
 	}
 
 	public function admin_delete($id = null)

@@ -21,12 +21,8 @@
 			<?php echo $html->image('/img/products/' . $product['Product']['image']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php __('Base price'); ?></dt>
-		<dd>$ <?php echo $product['Product']['price']; ?> (without options)</dd>
-		<dt><?php __('Default price'); ?></dt>
-		<dd>$ <?php echo $product['Product']['price_default']; ?> (including default options)</dd>
-		<dt><?php __('Minimum price'); ?></dt>
-		<dd>$ <?php echo $product['Product']['price_min']; ?> (including cheapest options)</dd>
+		<dt><?php __('Price'); ?></dt>
+		<dd>$ <?php echo $product['Product']['price']; ?></dd>
 		<dt><?php __('Owner'); ?></dt>
 		<dd><?php echo $product['User']['name']; ?>&nbsp;</dd>
 		<dt><?php __('Created'); ?></dt>
@@ -59,27 +55,3 @@
                 </ul>
         </div>
 <?php endif; ?>
-
-<div class="related">
-	<h3><?php __('Related Parts');?></h3>
-	<?php if (!empty($product['Part'])):?>
-	<dl>
-		<?php foreach ($product['Part'] as $part): ?>
-		<dt><?php echo $html->link($part['name'], array('controller'=> 'parts', 'action'=>'view', $part['id'])); ?></dt>
-		<dd style="margin-left: 20em;">
-			<ul>
-			<?php foreach ($part['PartOption'] as $option): ?>
-				<li>
-				<?php
-					if ($option['default']) {
-						echo '* ';
-					}
-					echo $option['name'] . '($ ' . $option['price'] . ')';
-				?>
-			<?php endforeach; ?>
-			</ul>
-		</dd>
-		<?php endforeach; ?>
-	</dl>
-	<?php endif; ?>
-</div>
