@@ -8,6 +8,9 @@
  * Redistributions of files must retain the above copyright notice.
  */
 
+/** @var int Defines infinite stock (make-to-order) **/
+define('STOCK_INFINITE', -1);
+
 /**
  * The Product Model
  */
@@ -34,6 +37,10 @@ class Product extends AppModel
 			'type'   => array('rule' => array('decimal', 2)),
 			'length' => array('rule' => array('between', 4, 9)),
 		),
+                'stock' => array(
+                        'type' => array('rule' => 'numeric'),
+                        'range' => array('rule' => array('range', -2, 1000)),
+                )
 	);
 }
 

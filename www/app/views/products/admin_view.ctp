@@ -22,7 +22,9 @@
 			&nbsp;
 		</dd>
 		<dt><?php __('Price'); ?></dt>
-		<dd>$ <?php echo $product['Product']['price']; ?></dd>
+		<dd>&euro; <?php echo $product['Product']['price']; ?></dd>
+		<dt><?php __('Stock'); ?></dt>
+		<dd><?php echo $product['Product']['stock'] == STOCK_INFINITE ? 'infinite' : $product['Product']['stock']; ?></dd>
 		<dt><?php __('Owner'); ?></dt>
 		<dd><?php echo $product['User']['name']; ?>&nbsp;</dd>
 		<dt><?php __('Created'); ?></dt>
@@ -36,7 +38,7 @@
 			&nbsp;
 		</dd>
 		<dt><?php __('Categories'); ?></dt>
-		<dd>
+		<dd>&nbsp;
 			<?php
 				if ($product['Category']) {
 					foreach ($product['Category'] as $category) {

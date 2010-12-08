@@ -10,6 +10,7 @@ echo $paginator->counter(array(
 <tr>
 	<th><?php echo $paginator->sort('name');?></th>
 	<th><?php echo $paginator->sort('price');?></th>
+	<th><?php echo $paginator->sort('stock');?></th>
         <th>Owner</th>
 	<th><?php echo $paginator->sort('created');?></th>
 	<th><?php echo $paginator->sort('modified');?></th>
@@ -22,7 +23,10 @@ echo $paginator->counter(array(
 			<?php echo $html->link($product['Product']['name'], array('action'=>'view', $product['Product']['id'])); ?>
 		</td>
 		<td>
-			$&nbsp;<?php echo $product['Product']['price']; ?>
+			&euro;&nbsp;<?php echo $product['Product']['price']; ?>
+		</td>
+		<td>
+			<?php echo $product['Product']['stock'] == STOCK_INFINITE ? 'infinite' : $product['Product']['stock']; ?>
 		</td>
 		<td>
 			<?php echo $product['User']['name']; ?>
