@@ -1,6 +1,6 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* App schema generated on: 2010-12-08 23:12:31 : 1291847611*/
+/* App schema generated on: 2011-06-09 22:06:20 : 1307652800*/
 class AppSchema extends CakeSchema {
 	var $name = 'App';
 
@@ -70,10 +70,19 @@ class AppSchema extends CakeSchema {
 		'id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'key' => 'primary'),
 		'user_id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'key' => 'index'),
 		'filename' => array('type' => 'string', 'null' => false, 'default' => NULL),
+		'format' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 4),
 		'created' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
 		'updated' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'user_id' => array('column' => 'user_id', 'unique' => 0)),
 		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'MyISAM')
+	);
+	var $images_products = array(
+		'id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'key' => 'primary'),
+		'image_id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'key' => 'index'),
+		'product_id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'key' => 'index'),
+		'order' => array('type' => 'integer', 'null' => false, 'default' => NULL),
+		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'image_id' => array('column' => 'image_id', 'unique' => 0), 'product_id' => array('column' => 'product_id', 'unique' => 0)),
+		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
 	);
 	var $permissions = array(
 		'id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'key' => 'primary'),
@@ -91,7 +100,6 @@ class AppSchema extends CakeSchema {
 		'slug' => array('type' => 'string', 'null' => false, 'default' => NULL, 'key' => 'index'),
 		'lead' => array('type' => 'text', 'null' => false, 'default' => NULL),
 		'description' => array('type' => 'text', 'null' => false, 'default' => NULL),
-		'image' => array('type' => 'string', 'null' => false, 'default' => NULL),
 		'price' => array('type' => 'float', 'null' => false, 'default' => NULL, 'length' => '8,2'),
 		'stock' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 10),
 		'created' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
