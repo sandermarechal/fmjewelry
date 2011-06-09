@@ -52,8 +52,12 @@ class ProductsController extends AppController
 
 	public function admin_index()
 	{
-		$this->Product->recursive = 0;
-		$this->set('products', $this->paginate());
+                $this->paginate = array('Product' => array(
+                        'contain' => array('Category', 'User'),
+                ));
+
+                $products = $this->paginate('Product');
+		$this->set(compact('products'));
 	}
 
 	public function admin_view($id = null)
