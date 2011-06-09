@@ -15,15 +15,10 @@
 				echo $form->input('id');
 			}
 			echo $form->input('name');
-			echo $form->input('image', array(
-				'type' => 'select',
-				'options' => $images,
-				'after' => '<p>Upload images to app/webroot/img/products. Roughly 200x200px with white background.</p>'
-			));
 			echo $form->input('lead', array('label' => 'Lead (HTML)', 'default' => '<p>Enter the lead in HTML</p>'));
 			echo $form->input('description', array('label' => 'Description (HTML)', 'default' => '<p>Enter a description in HTML</p>'));
 			echo $form->input('price', array('label' => 'Price (n&hellip;nn.nn format)', 'default' => '0.00'));
-			echo $form->input('stock', array('label' => 'Stock (-1 for infinite stock)', 'default' => 0));
+			echo $form->input('stock', array('label' => 'Stock (-1 for infinite a.k.a. made-to-order )', 'default' => 0));
 			echo $form->input('Category', array('multiple' => 'checkbox', 'label' => __('Categories', true)));
 		?>
 	</fieldset>

@@ -16,11 +16,6 @@
 			<?php echo h($product['Product']['description']); ?>
 			&nbsp;
 		</dd>
-		<dt><?php __('Image'); ?></dt>
-		<dd>
-			<?php echo $html->image('/img/products/' . $product['Product']['image']); ?>
-			&nbsp;
-		</dd>
 		<dt><?php __('Price'); ?></dt>
 		<dd>&euro; <?php echo $product['Product']['price']; ?></dd>
 		<dt><?php __('Stock'); ?></dt>
@@ -49,6 +44,30 @@
 		</dd>
 	</dl>
 </div>
+
+<h3><?php  __('Images for this product');?></h3>
+<?php foreach ($product['Image'] as $image): ?>
+        <div>
+                <img src="<?php echo $image['thumb']; ?>" /><br />
+                <?php echo $html->image('/img/icons/up.png', array('alt' => 'Move up', 'url' => array('action' => 'moveup', $image['ImagesProduct']['id']))); ?>
+                <?php echo $html->image('/img/icons/down.png', array('alt' => 'Move down', 'url' => array('action' => 'movedown', $image['ImagesProduct']['id']))); ?>
+                <?php echo $html->image('/img/icons/delete.png', array('alt' => 'Delete', 'url' => array('action' => 'detach', $image['ImagesProduct']['id']))); ?>
+	</div>
+<?php endforeach; ?>
+<?php if (empty($product['Image'])): ?>
+        <p>No images</p>
+<?php endif; ?>
+
+<h3><?php  __('Add image');?></h3>
+<?php echo $this->Form->create('ImagesProduct', array('url' => array('controller' => 'products', 'action' => 'attach'))); ?>
+<fieldset>
+        <?php echo $this->Form->hidden('product_id', array('value' => $product['Product']['id'])); ?>
+        <?php echo $this->Form->select('image_id', $images); ?>
+        <input type="submit" value="Add">
+</fieldset>
+<?php echo $this->Form->end(); ?>
+        
+        
 <?php if ($Auth['User']['id'] == $product['User']['id']): ?>
         <div class="actions">
                 <ul>

@@ -23,7 +23,10 @@ class Product extends AppModel
 	);
 
 	/** @var array Products belong to many categories and can have many different components */
-	public $hasAndBelongsToMany = array('Category' => array('with' => 'CategoriesProduct'));
+        public $hasAndBelongsToMany = array(
+                'Category' => array('with' => 'CategoriesProduct'),
+                'Image' => array('with' => 'ImagesProduct'),
+        );
 
         /** @var array Product belongs to User */
         public $belongsTo = array('User');

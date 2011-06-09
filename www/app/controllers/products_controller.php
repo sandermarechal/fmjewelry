@@ -14,10 +14,13 @@
 class ProductsController extends AppController
 {
 	/** @var array The view helpers */
-	var $helpers = array('Html', 'Form', 'Header', 'Button', 'Javascript');
+	public $helpers = array('Html', 'Form', 'Header', 'Button', 'Javascript');
 
 	/** @var array The components for this controller */
-	var $components = array('Auth');
+	public $components = array('Auth');
+
+        /* @var array Models to use */
+        public $uses = array('ImagesProduct', 'Product');
 
 	/**
 	 * Set the auth permissions for this controller
@@ -60,22 +63,29 @@ class ProductsController extends AppController
 			$this->redirect(array('action'=>'index'));
 		}
 
-		$this->Product->contain(array('Category', 'User'));
+                $this->Product->contain(array(
+                        'Category',
+                        'Image' => array('order' => 'ImagesProduct.order ASC'),
+                        'User'
+                ));
+
 		$product = $this->Product->read(null, $id);
-		$this->set('product', $product);
-	}
+                foreach ($product['Image'] as &$image) {
+                        $this->Product->Image->id = $image['id'];
+                        $this->Product->Image->thumb(170);
+                        $image['thumb'] = '/img/products/' . $this->Product->Image->getPath(170);
+                }
+                
+                $ids = Set::extract('/Image/id', $product);
+                $images = $this->Product->Image->find('list', array(
+                        'conditions' => array(
+                                'user_id' => $this->Auth->user('id'),
+                                'not' => array('id' => $ids),
+                        ),
+                        'recursive' => -1,
+                ));
 
-	private function _getImages()
-	{
-		//TODO: Fix this when photo uploading has been ported
-		return array();
-
-		$images = glob(WWW_ROOT . 'img/products/*.*');
-		foreach ($images as &$image) {
-			$image = basename($image);
-		}
-
-		return array_combine($images, $images);
+		$this->set(compact('product', 'images'));
 	}
 
 	public function admin_add()
@@ -92,7 +102,6 @@ class ProductsController extends AppController
 		}
 
 		$categories = $this->Product->Category->find('list');
-		$images = $this->_getImages();
 
 		$this->set(compact('categories', 'images'));
 		$this->render('admin_edit');
@@ -136,7 +145,6 @@ class ProductsController extends AppController
 		}
 
 		$categories = $this->Product->Category->find('list');
-		$images = $this->_getImages();
 		$this->set(compact('categories','images'));
 	}
 
@@ -157,6 +165,62 @@ class ProductsController extends AppController
 			$this->redirect(array('action'=>'index'));
 		}
 	}
+
+        public function admin_attach()
+        {
+                if (empty($this->data)) {
+			$this->redirect(array('action'=>'index'));
+                }
+
+                $data = $this->data['ImagesProduct'];
+                if (!$this->_checkAccess($data['product_id'])) {
+                        $this->Session->setFlash(__('You are not allowed to edit that product', true));
+                        $this->redirect(array('action' => 'view', $data['product_id']));
+                }
+
+                $this->ImagesProduct->create();
+                $this->ImagesProduct->save($data);
+
+                $this->Session->setFlash(__('The image has been added', true));
+                $this->redirect(array('action' => 'view', $data['product_id']));
+        }
+
+        public function admin_detach($id)
+        {
+                $link = $this->ImagesProduct->read(null, $id);
+                if (!$this->_checkAccess($link['ImagesProduct']['product_id'])) {
+                        $this->Session->setFlash(__('You are not allowed to edit that product', true));
+                } else {
+                        $this->Session->setFlash(__('The image has been removed from this product', true));
+                        $this->ImagesProduct->delete($id);
+                }
+
+                $this->redirect(array('action' => 'view', $link['ImagesProduct']['product_id']));
+        }
+
+        public function admin_moveup($id)
+        {
+                $link = $this->ImagesProduct->read(null, $id);
+                if (!$this->_checkAccess($link['ImagesProduct']['product_id'])) {
+                        $this->Session->setFlash(__('You are not allowed to edit that product', true));
+                } else {
+                        $this->ImagesProduct->moveup($id);
+                }
+
+                $this->redirect(array('action' => 'view', $link['ImagesProduct']['product_id']));
+        }
+
+        public function admin_movedown($id)
+        {
+                $link = $this->ImagesProduct->read(null, $id);
+                if (!$this->_checkAccess($link['ImagesProduct']['product_id'])) {
+                        $this->Session->setFlash(__('You are not allowed to edit that product', true));
+                } else {
+                        $this->ImagesProduct->movedown($id);
+                }
+
+                $this->redirect(array('action' => 'view', $link['ImagesProduct']['product_id']));
+        }
 }
 
 ?>

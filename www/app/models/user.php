@@ -30,7 +30,7 @@ class User extends AppModel
 	/** @var array One-to-many relationships */
 	public $hasMany = array(
                 'Address' => array('dependent' => true),
-                'User',
+                'Image',
 	);
 
 	/** @var array Many-to-many relationships */
