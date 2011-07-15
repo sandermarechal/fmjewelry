@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Full Metal Jewelry" description="A website to sell maille trinkets" default="build">
+
+        <property file="build.properties" />
+
+        <target name="build" description="Build the application" depends="clean" />
+        
+        <target name="clean" description="Clean cache files">
+                <delete>
+                        <fileset dir="${project.basedir}/www/app/tmp/cache">
+                                <include name="models/cake_*" />
+                                <include name="persistent/cake_*" />
+                        </fileset>
+                </delete>
+        </target>
+
+</project>
