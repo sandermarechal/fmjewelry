@@ -22,6 +22,9 @@
                         </fileset>
                 </delete>
 
+                <!-- Create directory because it may not exist in a fresh checkout -->
+                <mkdir dir="${sass.builddir}" />
+
                 <!-- Compile SASS/SCSS -->
                 <exec command="${sass.bin} --style ${sass.style} --update ${sass.assetdir}:${sass.builddir}"
                       dir="${project.basedir}"
