@@ -14,7 +14,7 @@
 class ImagesController extends AppController {
 
 	/** @var array The view helpers */
-	public $helpers = array('Header', 'Button');
+	public $helpers = array('Button');
 
 	/** @var array The components for this controller */
 	public $components = array('Auth');

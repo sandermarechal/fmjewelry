@@ -24,7 +24,7 @@ class AppController extends Controller
 	public $components = array('Auth', 'Session');
 	
 	/** @var array The helpers that will be available on the view */
-	public $helpers = array('Html', 'Form', 'Button', 'Header', 'Letter', 'Session');
+	public $helpers = array('Html', 'Form', 'Button', 'Letter', 'Session');
 
 	/**
 	 * Application hook which runs prior to each controller action

@@ -18,7 +18,7 @@ class CategoriesController extends AppController
 	public $components = array('Auth');
 	
 	/** @var array The helpers for the controller */
-	public $helpers = array('Html', 'Form', 'Header', 'Button');
+	public $helpers = array('Html', 'Form', 'Button');
 
 	/**
 	 * Set the auth permissions for this controller

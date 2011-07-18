@@ -14,7 +14,7 @@
 class ProductsController extends AppController
 {
 	/** @var array The view helpers */
-	public $helpers = array('Html', 'Form', 'Header', 'Button', 'Javascript');
+	public $helpers = array('Html', 'Form', 'Button', 'Javascript');
 
 	/** @var array The components for this controller */
 	public $components = array('Auth');
