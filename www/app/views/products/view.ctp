@@ -47,13 +47,13 @@
 		<?php echo $button->submit('Add to cart', array('div' => false));?>
 	</div>
 
-	<?php echo $header->h2($product['Product']['name']); ?>
+	<h2><?php echo $product['Product']['name']; ?></h2>
 	<?php echo $product['Product']['description']; ?>
 
 	<p>Quantity: <input type="text" name="data[Product][quantity]" id="quantity" value="1" /></p>
 
 	<?php if (!empty($product['Part'])): ?>
-		<?php echo $header->h3('Configure'); ?>
+                <h3>Configure</h3>
 		<div id="product-configure">
 			<dl>
 			<?php foreach ($product['Part'] as $part): ?>

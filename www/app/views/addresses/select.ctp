@@ -7,15 +7,13 @@
 	});
 </script>
 
-<?php
-	$javascript->link('jquery-1.3.2.min.js', false);
+<?php $javascript->link('jquery-1.3.2.min.js', false); ?>
 
-	if ($type == 'shipping') {
-		echo $header->h2('Shipping address');
-	} else {
-		echo $header->h2('Billing address');
-	}
-?>
+<?php if ($type == 'shipping'): ?>
+        <h2>Shipping address</h2>
+<?php else: ?>
+        <h2>Billing address</h2>
+<?php endif; ?>
 
 <?php echo $form->create('Address', array('url' => array('action' => 'select', $type)));?>
 

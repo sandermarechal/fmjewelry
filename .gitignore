@@ -4,7 +4,7 @@ www/app/config/database.php
 www/app/tmp/cache/models/cake_*
 www/app/tmp/cache/persistent/cake_*
 www/app/tmp/logs/*.log
-www/app/webroot/css/*.css
+www/app/webroot/css/*
 www/app/webroot/img/buttons/*
 www/app/webroot/img/headers/*
 www/app/webroot/img/letters/*

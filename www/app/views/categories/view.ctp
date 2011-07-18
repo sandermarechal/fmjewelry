@@ -1,12 +1,12 @@
 <?php echo $this->element('control_box', $controlBox); ?>
 
 <div id="category-view">
-	<?php echo $header->h2($category['Category']['name']); ?>
+	<h2><?php echo $category['Category']['name']; ?></h2>
 	<?php echo $category['Category']['description']; ?>
 </div>
 
 <?php if ($subcategories): ?>
-	<?php echo $header->h3('Browse'); ?>
+	<h3>Browse</h3>
 	<div id="subcategories">
 		<ul>
 			<?php foreach ($subcategories as $index => $subcategory): ?>
@@ -27,7 +27,7 @@
 <?php if ($products): ?>
 	<div id="products">
 		<?php if ($subcategories): ?>
-			<?php echo $header->h3('Features'); ?>
+                        <h3>Features</h3>
 		<?php endif; ?>
 		<div class="product-group">
 		<?php foreach ($products as $i => $product): ?>

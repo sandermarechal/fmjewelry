@@ -16,7 +16,7 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<?php echo $header->h1('Full Metal Jewelry');?>
+                        <h1>Full Metal Jewelry</h1>
 		</div>
 		<div class="nav">
 			<ul>

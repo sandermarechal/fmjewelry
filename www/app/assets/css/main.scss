@@ -1,10 +1,21 @@
+// Import CSS reset
 @import "reset";
 @include global-reset;
 
-/* Generic */
+// Import font faces
+@import "josefin";
+
+// Normalize font sizes
+body { font:13px/1.231 sans-serif; }
+select, input, textarea, button { font:99% sans-serif; }
+
+@function font-scale($size) {
+        @return ($size / 13px) * 100%;
+}
+
+/* Base styles */
 body {
 	background-color: #fff;
-	font-family: sans-serif;
 }
 
 p {
@@ -17,24 +28,15 @@ p img.first-letter {
 	margin: 0 5px 0 5px;
 }
 
-h1 {
+h1, h2, h3, h4 {
 	margin: 0.5em 0;
-	font-size: xx-large;
+        font-family: 'Josefin', sans-serif;
 }
 
-h2 {
-	margin: 0.5em 0;
-	font-size: x-large;
-}
-
-h3 {
-	margin: 0.5em 0;
-	font-size: large;
-}
-
-h4 {
-	margin: 0.5em 0;
-}
+h1 { font-size: font-scale(48px); }
+h2 { font-size: font-scale(36px); }
+h3 { font-size: font-scale(24px); }
+h4 { font-size: font-scale(16px); }
 
 .header-replace {
 	background-repeat: no-repeat;
