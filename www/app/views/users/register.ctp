@@ -8,6 +8,5 @@
 			echo $form->input('password', array('value' => ''));
 		?>
 	</fieldset>
-	<?php echo $button->submit('Register');?>
-<?php echo $form->end();?>
+<?php echo $form->end('Register');?>
 </div>

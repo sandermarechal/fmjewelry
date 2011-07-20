@@ -56,6 +56,6 @@ echo $paginator->counter(array(
 
 <div class="actions">
 	<ul>
-		<li><?php echo $button->link(__('New Product', true), array('action'=>'add')); ?></li>
+		<li><?php echo $this->Html->link(__('New Product', true), array('action'=>'add')); ?></li>
 	</ul>
 </div>

@@ -46,7 +46,7 @@ echo $paginator->counter(array(
 
 <div class="actions">
 	<ul>
-		<li><?php echo $button->link(__('New Category', true), array('action'=>'add')); ?></li>
-		<li><?php echo $button->link(__('Reset order', true), array('action'=>'reset_order')); ?></li>
+		<li><?php echo $this->Html->link(__('New Category', true), array('action'=>'add')); ?></li>
+		<li><?php echo $this->Html->link(__('Reset order', true), array('action'=>'reset_order')); ?></li>
 	</ul>
 </div>

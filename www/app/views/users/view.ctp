@@ -27,10 +27,12 @@
 </div>
 
 <?php if ($this->action == 'admin_view'): ?>
-	<div class="actions"><p>
-		<?php echo $button->link(__('Edit account', true), array('action'=>'edit', $user['User']['id'])); ?>
-		<?php echo $button->link(__('Manage addresses', true), array('controller' => 'addresses', 'action'=>'index', $user['User']['id'])); ?>
-	</p></div>
+        <div class="actions">
+                <ul>
+                        <li><?php echo $this->Html->link(__('Edit account', true), array('action'=>'edit', $user['User']['id'])); ?></li>
+                        <li><?php echo $this->Html->link(__('Manage addresses', true), array('controller' => 'addresses', 'action'=>'index', $user['User']['id'])); ?></li>
+                </ul>
+	</div>
 	<div class="related">
 		<h3><?php printf(__('%s is a member of the following groups', true), $user['User']['name']);?></h3>
 
@@ -51,8 +53,10 @@
 
 	</div>
 <?php else: ?>
-	<div class="actions"><p>
-		<?php echo $button->link(__('Edit your account', true), array('action'=>'edit')); ?>
-		<?php echo $button->link(__('Manage your addresses', true), array('controller' => 'addresses', 'action'=>'index')); ?>
-	</p></div>
+	<div class="actions">
+                <ul>
+                        <li><?php echo $this->Html->link(__('Edit your account', true), array('action'=>'edit')); ?></li>
+                        <li><?php echo $this->Html->link(__('Manage your addresses', true), array('controller' => 'addresses', 'action'=>'index')); ?></li>
+                </ul>
+	</div>
 <?php endif; ?>

@@ -93,10 +93,9 @@ class Category extends AppModel
 		));
 
 		$products = array();
+                var_dump(get_class($this->Product));
 		foreach ($category['Product'] as $product) {
 			unset($product['CategoriesProduct']);
-			$product['price_min'] = $this->Product->getMinimumPrice($product['id']);
-			$product['price_default'] = $this->Product->getDefaultPrice($product['id']);
 			$products[] = array('Product' => $product);
 		}
 

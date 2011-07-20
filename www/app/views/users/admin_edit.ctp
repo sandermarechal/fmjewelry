@@ -12,6 +12,5 @@
 			echo $form->input('Group', array('multiple' => 'checkbox', 'label' => __('Group membership', true)));
 		?>
 	</fieldset>
-	<?php echo $button->submit('Submit');?>
-<?php echo $form->end();?>
+<?php echo $form->end('Save');?>
 </div>

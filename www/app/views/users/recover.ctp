@@ -4,10 +4,8 @@ your account password.</p>
 
 <?php echo $form->create('User', array('action' => 'recover'));?>
 	<fieldset>
-		<?php
-			echo $form->input('email_address', array('value' => ''));
-		?>
+                <legend>Recover your password</legend>
+                <?php echo $form->input('email_address', array('value' => '')); ?>
 	</fieldset>
-	<?php echo $button->submit('Recover');?>
-<?php echo $form->end();?>
+<?php echo $form->end('Recover');?>
 </div>

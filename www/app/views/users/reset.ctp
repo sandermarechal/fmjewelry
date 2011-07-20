@@ -9,6 +9,5 @@
 			echo $form->input('new_password_confirm', array('type' => 'password', 'value' => '', 'label' => __('Confirm password', true)));
 		?>
 	</fieldset>
-	<?php echo $button->submit('Reset');?>
-<?php echo $form->end();?>
+<?php echo $form->end('Reset');?>
 </div>

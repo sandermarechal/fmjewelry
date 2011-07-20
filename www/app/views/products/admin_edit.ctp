@@ -22,6 +22,5 @@
 			echo $form->input('Category', array('multiple' => 'checkbox', 'label' => __('Categories', true)));
 		?>
 	</fieldset>
-	<?php echo $button->submit('Submit');?>
-<?php echo $form->end();?>
+<?php echo $form->end('Save');?>
 </div>

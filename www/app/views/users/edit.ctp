@@ -15,6 +15,5 @@
 			echo $form->input('new_password_confirm', array('type' => 'password', 'value' => '', 'label' => __('Confirm password', true)));
 		?>
 	</fieldset>
-	<?php echo $button->submit('Save');?>
-<?php echo $form->end();?>
+<?php echo $form->end('Save');?>
 </div>

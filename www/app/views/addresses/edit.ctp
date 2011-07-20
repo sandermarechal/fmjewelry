@@ -23,6 +23,5 @@
 			echo $form->input('country');
 		?>
 	</fieldset>
-	<?php echo $button->submit('Save');?>
-<?php echo $form->end();?>
+<?php echo $form->end('Save');?>
 </div>

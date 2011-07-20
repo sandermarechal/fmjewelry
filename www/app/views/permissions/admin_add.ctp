@@ -1,5 +1,5 @@
 <div class="permissions form">
-<?php echo $form->create('Permission', array('url' => array('action' => 'add', $groupId)));?>
+<?php echo $form->create('Permission', array('url' => array('action' => 'add', $group_id)));?>
 	<fieldset>
  		<legend><?php __('Add Permission');?></legend>
 	<?php
@@ -9,6 +9,5 @@
 		));
 	?>
 	</fieldset>
-	<?php echo $button->submit('Submit');?>
-<?php echo $form->end();?>
+<?php echo $form->end('Save');?>
 </div>

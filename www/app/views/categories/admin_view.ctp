@@ -35,8 +35,8 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $button->link(__('Edit Category', true), array('action'=>'edit', $category['Category']['id'])); ?> </li>
-		<li><?php echo $button->link(__('Delete Category', true), array('action'=>'delete', $category['Category']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $category['Category']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Category', true), array('action'=>'edit', $category['Category']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Delete Category', true), array('action'=>'delete', $category['Category']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $category['Category']['id'])); ?> </li>
 	</ul>
 </div>
 
@@ -58,6 +58,6 @@
 </table>
 <div class="actions">
 	<ul>
-		<li><?php echo $button->link(__('Reset order', true), array('action'=>'product_reset_order', $category['Category']['slug'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Reset order', true), array('action'=>'product_reset_order', $category['Category']['slug'])); ?> </li>
 	</ul>
 </div>

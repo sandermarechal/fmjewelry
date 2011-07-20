@@ -12,11 +12,11 @@ you can use our <a href="/users/recover">password recovery</a> form to reset you
 
 <?php echo $form->create('User', array('action' => 'login')); ?>
 <fieldset>
+        <legend>Login</legend>
 	<?php
-		echo $form->input('email_address', array('between' => '<br>', 'class' => 'text'));
-		echo $form->input('password', array('between' => '<br>', 'class' => 'text'));
+		echo $form->input('email_address', array('class' => 'text'));
+		echo $form->input('password', array('class' => 'text'));
 	?>
 </fieldset>
-<?php echo $button->submit('Log in');?>
-<?php echo $form->end(); ?>
+<?php echo $form->end('Log in'); ?>
 

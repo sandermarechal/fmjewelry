@@ -13,8 +13,6 @@ echo $paginator->counter(array(
 		<th><?php echo $paginator->sort('email_address');?></th>
 		<th><?php echo $paginator->sort('active');?></th>
 		<th><?php __('Member of'); ?></th>
-		<th><?php echo $paginator->sort('created');?></th>
-		<th><?php echo $paginator->sort('modified');?></th>
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 
@@ -27,7 +25,7 @@ echo $paginator->counter(array(
 			<?php echo $user['User']['email_address']; ?>
 		</td>
 		<td>
-			<?php echo $user['User']['active']; ?>
+			<?php echo $user['User']['active'] ? 'Yes' : 'No'; ?>
 		</td>
 		<td>
 			<?php
@@ -40,18 +38,12 @@ echo $paginator->counter(array(
 				}
 			?>
 		</td>
-		<td>
-			<?php echo $user['User']['created']; ?>
-		</td>
-		<td>
-			<?php echo $user['User']['modified']; ?>
-		</td>
 		<td class="actions">
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $user['User']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array(
+                        <?php echo $html->image('/img/icons/edit.png', array('alt' => 'Edit', 'url' => array('action'=>'edit', $user['User']['id']))); ?>
+			<?php echo $html->link($html->image('/img/icons/delete.png', array('alt' => 'Delete')), array(
 				'action'=>'delete',
 				$user['User']['id']),
-				null,
+				array('escape' => false),
 				sprintf(__('Are you sure you want to delete # %s?', true),
 				$user['User']['id']));
 			?>
@@ -69,6 +61,6 @@ echo $paginator->counter(array(
 
 <div class="actions">
 	<ul>
-		<li><?php echo $button->link(__('New User', true), array('action'=>'add')); ?></li>
+		<li><?php echo $this->Html->link(__('New User', true), array('action'=>'add')); ?></li>
 	</ul>
 </div>

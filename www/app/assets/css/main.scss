@@ -30,7 +30,7 @@ p img.first-letter {
 
 h1, h2, h3, h4 {
 	margin: 0.5em 0;
-        font-family: 'Josefin', sans-serif;
+        font-family: 'Josefin';
 }
 
 h1 { font-size: font-scale(48px); }
@@ -54,24 +54,32 @@ h4 { font-size: font-scale(16px); }
 
 #header {
 	height: 100px;
-	padding-left: 10px;
-}
-
-#header h1 {
 }
 
 /* Navigation and tabs */
 .nav {
 	height: 32px;
-}
+ 
+        li {
+                float: left;
+                margin-right: 2em;
 
-.nav li {
-	float: left;
+                font: {
+                        family: 'Josefin';
+                        size: font-scale(24px);
+                }
+
+                a {
+                        text-decoration: none;
+                        &:before { content: '› '; }
+                }
+        }
 }
 
 /* Main content */
 #content {
 	clear: left;
+        margin-bottom: 2em;
 }
 
 /* Flash message */
@@ -109,7 +117,7 @@ h4 { font-size: font-scale(16px); }
 /* Scaffold View */
 dl {
 	line-height: 2em;
-	margin: 0em 0em;
+    margin-bottom: 1em;
 }
 dt {
 	font-weight: bold;
@@ -150,11 +158,13 @@ fieldset {
 	margin-top: 30px;
 	padding: 16px 20px;
 	border: 1px solid #ddd;
-}
-fieldset legend {
-	color: #0045ce;
-	font-size: large;
-	font-weight: bold;
+        
+        legend {
+                font: {
+                        family: 'Josefin';
+                        size: font-scale(24px);
+                }
+        }
 }
 fieldset fieldset {
 	margin-top: 0px;
@@ -238,23 +248,24 @@ textarea.monospace {
 
 /*  Actions  */
 div.actions ul {
-	margin: 0px 0;
-	padding: 0;
-}
-div.actions li {
-	display: inline;
-	list-style-type: none;
-	line-height: 2em;
-	margin: 0 2em 0 0;
-	white-space: nowrap;
-}
-div.actions ul li a {
-	color: #003d4c;
-	text-decoration: none;
-}
-div.actions ul li a:hover {
-	color: #333;
-	text-decoration: underline;
+        margin-bottom: 1em;
+        padding: 0;
+        height: 18px;
+
+        li {
+                float: left;
+                margin-right: 2em;
+
+                font: {
+                        family: 'Josefin';
+                        size: font-scale(18px);
+                }
+
+                a {
+                        text-decoration: none;
+                        &:before { content: '› '; }
+                }
+        }
 }
 
 /* Related */

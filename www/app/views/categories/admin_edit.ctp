@@ -23,6 +23,5 @@
 			echo $form->input('description', array('label' => 'Description (HTML)', 'default' => '<p>Enter a description in HTML</p>'));
 		?>
 	</fieldset>
-	<?php echo $button->submit('Save');?>
-<?php echo $form->end();?>
+<?php echo $form->end('Save');?>
 </div>

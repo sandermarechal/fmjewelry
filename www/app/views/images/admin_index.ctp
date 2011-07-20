@@ -33,11 +33,10 @@
 	</div>
 </div>
 <div class="upload" style="clear: both;">
-	<h3>Add an image</h3>
 	<?php echo $this->Form->create(false, $options = array('type' => 'file', 'action' => 'upload')); ?>
 	<fieldset>
+        <legend>Add an image</legend>
 		<?php echo $this->Form->file('image'); ?>
 	</fieldset>
-	<?php echo $button->submit('Add');?>
-	<?php echo $form->end(); ?>
+	<?php echo $form->end('Add'); ?>
 </div>

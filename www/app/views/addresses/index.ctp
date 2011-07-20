@@ -21,11 +21,11 @@
 		<?php echo strtoupper($address['Address']['country']); ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $address['Address']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $address['Address']['id']), null, sprintf(__('Are you sure you want to delete this address?', true), $address['Address']['id'])); ?>
+                        <?php echo $html->image('/img/icons/edit.png', array('alt' => 'Edit', 'url' => array('action'=>'edit', $address['Address']['id']))); ?>
+			<?php echo $html->link($html->image('/img/icons/delete.png', array('alt' => 'Delete')), array('action'=>'delete', $address['Address']['id']), array('escape' => false), sprintf(__('Are you sure you want to delete this address?', true), $address['Address']['id'])); ?>
 			<?php
 				if (!$address['Address']['primary']) {
-					echo $html->link(__('Make primary', true), array('action' => 'primary', $address['Address']['id']));
+                                        echo $html->image('/img/icons/home.png', array('alt' => 'Set as default', 'url' => array('action'=>'primary', $address['Address']['id'])));
 				}
 			?>
 		</td>
@@ -44,9 +44,9 @@
 		<li>
 			<?php
 			if ($this->action == 'admin_index') {
-				echo $button->link(__('New Address', true), array('action' => 'add', $user['User']['id']));
+				echo $this->Html->link(__('New Address', true), array('action' => 'add', $user['User']['id']));
 			} else {
-				echo $button->link(__('New Address', true), array('action' => 'add'));
+				echo $this->Html->link(__('New Address', true), array('action' => 'add'));
 			}
 			?>
 		</li>

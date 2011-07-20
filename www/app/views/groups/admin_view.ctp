@@ -27,8 +27,8 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $button->link(__('Edit Group', true), array('action'=>'edit', $group['Group']['id'])); ?> </li>
-		<li><?php echo $button->link(__('Delete Group', true), array('action'=>'delete', $group['Group']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $group['Group']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Edit Group', true), array('action'=>'edit', $group['Group']['id'])); ?> </li>
+		<li><?php echo $this->Html->link(__('Delete Group', true), array('action'=>'delete', $group['Group']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $group['Group']['id'])); ?> </li>
 	</ul>
 </div>
 
@@ -48,7 +48,7 @@
 				<td><?php echo $permission['created'];?></td>
 				<td><?php echo $permission['modified'];?></td>
 				<td class="actions">
-					<?php echo $html->link(__('Delete', true), array('controller'=> 'permissions', 'action'=>'delete', $permission['id']), null, sprintf(__('Are you sure you want to delete permission %s?', true), $permission['name'])); ?>
+					<?php echo $html->link($html->image('/img/icons/delete.png', array('alt' => 'Delete')), array('controller'=> 'permissions', 'action'=>'delete', $permission['id']), array('escape' => false), sprintf(__('Are you sure you want to delete permission %s?', true), $permission['name'])); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>
@@ -57,7 +57,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $button->link(__('New Permission', true), array('controller'=> 'permissions', 'action'=>'add', $group['Group']['id']));?> </li>
+			<li><?php echo $this->Html->link(__('New Permission', true), array('controller'=> 'permissions', 'action'=>'add', $group['Group']['id']));?> </li>
 		</ul>
 	</div>
 </div>
@@ -80,7 +80,7 @@
 				<td><?php echo $user['created'];?></td>
 				<td><?php echo $user['modified'];?></td>
 				<td class="actions">
-					<?php echo $html->link(__('Remove from group', true), array('action'=>'removeMember', $group['Group']['id'], $user['id']), null, sprintf(__('Are you sure you want to remove %s from this group?', true), $user['name'])); ?>
+					<?php echo $html->link($html->image('/img/icons/delete.png', array('alt' => 'Delete')), array('action'=>'removeMember', $group['Group']['id'], $user['id']), array('escape' => false), sprintf(__('Are you sure you want to remove %s from this group?', true), $user['name'])); ?>
 				</td>
 			</tr>
 		<?php endforeach; ?>

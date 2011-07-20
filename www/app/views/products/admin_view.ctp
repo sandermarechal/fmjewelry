@@ -44,6 +44,15 @@
 		</dd>
 	</dl>
 </div>
+        
+<?php if ($Auth['User']['id'] == $product['User']['id']): ?>
+        <div class="actions">
+                <ul>
+                        <li><?php echo $this->Html->link(__('Edit Product', true), array('action'=>'edit', $product['Product']['id'])); ?> </li>
+                        <li><?php echo $this->Html->link(__('Delete Product', true), array('action'=>'delete', $product['Product']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $product['Product']['id'])); ?> </li>
+                </ul>
+        </div>
+<?php endif; ?>
 
 <h3><?php  __('Images for this product');?></h3>
 <?php foreach ($product['Image'] as $image): ?>
@@ -58,21 +67,11 @@
         <p>No images</p>
 <?php endif; ?>
 
-<h3><?php  __('Add image');?></h3>
 <?php echo $this->Form->create('ImagesProduct', array('url' => array('controller' => 'products', 'action' => 'attach'))); ?>
 <fieldset>
+        <legend>Add an image</legend>
         <?php echo $this->Form->hidden('product_id', array('value' => $product['Product']['id'])); ?>
-        <?php echo $this->Form->select('image_id', $images); ?>
-        <input type="submit" value="Add">
+        <?php echo $this->Form->select('image_id', $images, null, array('empty' => '- Select an image -')); ?>
 </fieldset>
-<?php echo $this->Form->end(); ?>
+<?php echo $this->Form->end('Add'); ?>
         
-        
-<?php if ($Auth['User']['id'] == $product['User']['id']): ?>
-        <div class="actions">
-                <ul>
-                        <li><?php echo $button->link(__('Edit Product', true), array('action'=>'edit', $product['Product']['id'])); ?> </li>
-                        <li><?php echo $button->link(__('Delete Product', true), array('action'=>'delete', $product['Product']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $product['Product']['id'])); ?> </li>
-                </ul>
-        </div>
-<?php endif; ?>

@@ -15,15 +15,8 @@ echo $paginator->counter(array(
 	<th><?php echo $paginator->sort('modified');?></th>
 	<th class="actions"><?php __('Actions');?></th>
 </tr>
-<?php
-$i = 0;
-foreach ($groups as $group):
-	$class = null;
-	if ($i++ % 2 == 0) {
-		$class = ' class="altrow"';
-	}
-?>
-	<tr<?php echo $class;?>>
+<?php foreach ($groups as $group): ?>
+	<tr>
 		<td>
 			<?php echo $html->link($group['Group']['name'], array('action'=>'view', $group['Group']['id'])); ?>
 		</td>
@@ -40,8 +33,8 @@ foreach ($groups as $group):
 			<?php echo $group['Group']['modified']; ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $group['Group']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $group['Group']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $group['Group']['id'])); ?>
+			<?php echo $html->image('/img/icons/edit.png', array('alt' => 'Edit', 'url' => array('action'=>'edit', $group['Group']['id']))); ?>
+			<?php echo $html->link($html->image('/img/icons/delete.png', array('alt' => 'Delete')), array('action'=>'delete', $group['Group']['id']), array('escape' => false), sprintf(__('Are you sure you want to delete %s?', true), $group['Group']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -54,6 +47,6 @@ foreach ($groups as $group):
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $button->link(__('New Group', true), array('action'=>'add')); ?></li>
+		<li><?php echo $this->Html->link(__('New Group', true), array('action'=>'add')); ?></li>
 	</ul>
 </div>

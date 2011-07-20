@@ -15,6 +15,5 @@
 		echo $form->input('default', array('label' => 'New and existing users should be added to this group automatically'));
 	?>
 	</fieldset>
-	<?php echo $button->submit('Submit');?>
-<?php echo $form->end();?>
+<?php echo $form->end('Save');?>
 </div>

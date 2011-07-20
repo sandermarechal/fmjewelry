@@ -20,13 +20,13 @@
 		</div>
 		<div class="nav">
 			<ul>
-				<li><?php echo $this->Button->link('Home', '/');?></li>
+				<li><a href="/">Home</a></li>
 				<?php if ($Auth):?>
-					<li><?php echo $this->Button->link('Your account', '/users/view');?></li>
-					<li><?php echo $this->Button->link('Logout', '/users/logout');?></li>
+                                        <li><a href="/users/view">Your account</a></li>
+                                        <li><a href="/users/logout">Logout</a></li>
 				<?php else:?>
-					<li><?php echo $this->Button->link('Login', '/users/login');?></li>
-					<li><?php echo $this->Button->link('Register', '/users/register');?></li>
+                                        <li><a href="/users/login">Login</a></li>
+                                        <li><a href="/users/register">Register</a></li>
 				<?php endif;?>
 			</ul>
 		</div>
@@ -39,7 +39,7 @@
 			if ($adminControllers) {
 			echo '<ul>';
 				foreach ($adminControllers as $controller) {
-					echo '<li>' . $this->Button->link($controller, '/admin/' . strtolower($controller) . '/index') . '</li>';
+					echo '<li>' . $this->Html->link($controller, '/admin/' . strtolower($controller) . '/index') . '</li>';
 				}
 				echo '</ul>';
 			}
