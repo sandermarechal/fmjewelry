@@ -88,14 +88,19 @@ class Category extends AppModel
 		$category = $this->find('first', array(
 			'contain' => array(
 				'Product' => array('order' => 'CategoriesProduct.order ASC'),
+                'Product.Image',
 			),
 			'conditions' => array('Category.id' => $id),
 		));
 
 		$products = array();
-                var_dump(get_class($this->Product));
 		foreach ($category['Product'] as $product) {
 			unset($product['CategoriesProduct']);
+            if (count($product['Image'])) {
+                $this->Product->Image->id = $product['Image'][0]['id'];
+                $product['image'] = $this->Product->Image->getPath(170);
+                unset($product['Image']);
+            }
 			$products[] = array('Product' => $product);
 		}
 

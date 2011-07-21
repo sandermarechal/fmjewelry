@@ -36,7 +36,7 @@ h1, h2, h3, h4 {
 h1 { font-size: font-scale(48px); }
 h2 { font-size: font-scale(36px); }
 h3 { font-size: font-scale(24px); }
-h4 { font-size: font-scale(16px); }
+h4 { font-size: font-scale(20px); }
 
 .header-replace {
 	background-repeat: no-repeat;
@@ -48,7 +48,7 @@ h4 { font-size: font-scale(16px); }
 
 /* Main layout and header */
 #container {
-       width: 55em;
+       width: 750px;
        margin: 0 auto;
 }
 
@@ -99,19 +99,39 @@ h4 { font-size: font-scale(16px); }
 /* Footer */
 #footer {
 	text-align: center;
+    clear: both;
+
+    p {
+        color: #999;
+        font-size: font-scale(10px);
+        padding: 5px;
+        font-family: sans-serif;
+
+        a {
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px dotted #333;
+        }
+    }
 }
 
-#footer p {
-	color: #999;
-	font-size: x-small;
-	padding: 5px;
-	font-family: sans-serif;
-}
+/* Floating product box */
+#products {
+    .product-box {
+        $width: 240px;
+        $padding: $width - 170px;
+        float: left;
+        width: $width - $padding;
+        padding: 0 ($padding / 2);
+        border: 1px solid #ccc;
+        margin-right: 10px;
+        margin-bottom: 10px;
 
-#footer a {
-	color: #333;
-	text-decoration: none;
-	border-bottom: 1px dotted #333;
+        h4 { text-align: center; }
+    }
+
+    .product-group { overflow: hidden; }
+    .last { margin-right: 0px; }
 }
 
 /* Scaffold View */
