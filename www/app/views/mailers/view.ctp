@@ -3,6 +3,6 @@
 <h2>
     <?php echo $mailer['User']['name']; ?>
 </h2>
-<?php echo $mailer['User']['description']; ?>
+<?php echo $mailer['User']['description_html']; ?>
 
 <?php echo $this->element('products'); ?>

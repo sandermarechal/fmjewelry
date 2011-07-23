@@ -52,12 +52,17 @@ class MailersController extends AppController
 			$this->redirect('/');
 		}
 
-		$this->User->contain();
+		$this->User->contain('Group');
 		$mailer =  $this->User->findBySlug($slug);
 		if (!$mailer) {
 			$this->Session->setFlash(__('Invalid mailer.', true));
 			$this->redirect('/');
 		}
+
+        if (!in_array('Mailers', Set::extract('/Group/name', $mailer))) {
+			$this->Session->setFlash(__('Invalid mailer.', true));
+			$this->redirect('/');
+        }
 
 		$subcategories = $this->Category->getSubcategories();
 		$products = $this->User->getProducts($mailer['User']['id']);

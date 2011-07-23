@@ -148,6 +148,20 @@ class User extends AppModel
 		}
 
 		return $products;
+    }
+
+	/**
+	 * Convert the Markdown description to HTML before saving
+	 * @return boolean True to continue saving
+	 */
+	public function beforeSave()
+	{
+		if (isset($this->data['User']['description'])) {
+			App::import('Vendor', 'markdown');
+			$this->data['User']['description_html'] = Markdown($this->data['User']['description']);
+		}
+
+		return true;
 	}
 
 	/**

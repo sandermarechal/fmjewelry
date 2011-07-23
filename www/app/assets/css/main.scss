@@ -50,6 +50,10 @@ a {
     &:visited { color: $link-color; }
 }
 
+em { font-style: italic; }
+strong { font-weight: bold; }
+pre { font-family: monospace; }
+
 .header-replace {
     background-repeat: no-repeat;
     text-indent: -999px;
@@ -76,21 +80,22 @@ a {
 /* Navigation and tabs */
 .nav {
     height: 32px;
+    clear: both;
  
-        li {
-                float: left;
-                margin-right: 2em;
+    li {
+        float: left;
+        margin-right: 2em;
 
-                font: {
-                        family: 'Josefin';
-                        size: font-scale(24px);
-                }
-
-                a {
-                        text-decoration: none;
-                        &:before { content: '› '; }
-                }
+        font: {
+            family: 'Josefin';
+            size: font-scale(24px);
         }
+
+        a {
+            text-decoration: none;
+            &:before { content: '› '; }
+        }
+    }
 }
 
 /* Main content */

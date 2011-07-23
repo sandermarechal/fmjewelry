@@ -18,7 +18,7 @@
                 <!-- Delete generated CSS -->
                 <delete>
                         <fileset dir="${sass.builddir}">
-                                <include name="*.css" />
+                                <include name="main.css" />
                         </fileset>
                 </delete>
 

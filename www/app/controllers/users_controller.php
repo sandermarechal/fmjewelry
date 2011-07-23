@@ -17,7 +17,7 @@ class UsersController extends AppController
 	public $components = array('Email', 'Auth');
 	
 	/** @var array The helpers that will be available on the view */
-	public $helpers = array('Html', 'Form', 'Button');
+	public $helpers = array('Html', 'Form', 'Button', 'Javascript');
 
 	/**
 	 * Set the auth permissions for this controller
@@ -260,6 +260,8 @@ class UsersController extends AppController
 		
 		if (empty($this->data)) {
 			$this->data = $this->User->read();
+            $mailer = in_array('Mailers', Set::extract('/Group/name', $this->data));
+            $this->set(compact('mailer'));
 			return;
 		}
 
