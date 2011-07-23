@@ -12,6 +12,7 @@
                     }
                 ?>
                 <p><?php echo $product['Product']['lead']; ?></p>
+                <p>Price: <strong>&euro; <?php echo str_replace('.', ',', $product['Product']['price']); ?></strong></p>
             </div>
             <?php if (($i + 1) % 2 == 0 && count($products) > $i + 1): ?>
                 </div><div class="product-group">
