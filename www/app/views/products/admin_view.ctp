@@ -13,7 +13,7 @@
 		</dd>
 		<dt><?php __('Description'); ?></dt>
 		<dd>
-			<?php echo h($product['Product']['description']); ?>
+			<?php echo $product['Product']['description_html']; ?>
 			&nbsp;
 		</dd>
 		<dt><?php __('Price'); ?></dt>

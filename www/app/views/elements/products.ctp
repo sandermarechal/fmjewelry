@@ -10,8 +10,8 @@
                             'url' => array('controller' => 'products', 'action' => 'view', $product['Product']['slug']),
                         ));
                     }
-                    echo $product['Product']['lead'];
                 ?>
+                <p><?php echo $product['Product']['lead']; ?></p>
             </div>
             <?php if (($i + 1) % 2 == 0 && count($products) > $i + 1): ?>
                 </div><div class="product-group">

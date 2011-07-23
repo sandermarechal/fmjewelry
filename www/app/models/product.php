@@ -45,6 +45,20 @@ class Product extends AppModel
                         'range' => array('rule' => array('range', -2, 1000)),
                 )
 	);
+
+	/**
+	 * Convert the Markdown description to HTML before saving
+	 * @return boolean True to continue saving
+	 */
+	public function beforeSave()
+	{
+		if (isset($this->data['Product']['description'])) {
+			App::import('Vendor', 'markdown');
+			$this->data['Product']['description_html'] = Markdown($this->data['Product']['description']);
+		}
+
+		return true;
+	}
 }
 
 ?>
