@@ -45,12 +45,12 @@
 			}
 			?>
 		</div>
-		<div id="footer">
-			<p>&copy; 2010 Full Metal Jewelry
-			| Design by <a href="http://www.jejik.com">Lone Wolves</a>
-			| Valid XHTML, CSS, WCAG 1.0 A</p>
-		</div>
 	</div>
+    <div id="footer">
+        <p>&copy; 2010 Full Metal Jewelry
+        | Design by <a href="http://www.jejik.com">Lone Wolves</a>
+        | Valid XHTML, CSS, WCAG 1.0 A</p>
+    </div>
 	<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>

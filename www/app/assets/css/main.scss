@@ -14,8 +14,9 @@ select, input, textarea, button { font:99% sans-serif; }
 }
 
 /* Base styles */
-body {
-	background-color: #fff;
+html, body {
+	background-color: #f8f8f8;
+    padding: 0;
 }
 
 p {
@@ -38,6 +39,13 @@ h2 { font-size: font-scale(36px); }
 h3 { font-size: font-scale(24px); }
 h4 { font-size: font-scale(20px); }
 
+a {
+    $link-color: #4183c4;
+    color: $link-color;
+    &:active { color: $link-color; }
+    &:visited { color: $link-color; }
+}
+
 .header-replace {
 	background-repeat: no-repeat;
 	text-indent: -999px;
@@ -48,8 +56,13 @@ h4 { font-size: font-scale(20px); }
 
 /* Main layout and header */
 #container {
-       width: 750px;
-       margin: 0 auto;
+    width: 750px;
+    margin: 0 auto;
+    padding: 0 32px 16px 32px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    overflow: hidden;
 }
 
 #header {
@@ -102,7 +115,7 @@ h4 { font-size: font-scale(20px); }
     clear: both;
 
     p {
-        color: #999;
+        color: #777;
         font-size: font-scale(10px);
         padding: 5px;
         font-family: sans-serif;
@@ -119,15 +132,19 @@ h4 { font-size: font-scale(20px); }
 #products {
     .product-box {
         $width: 240px;
-        $padding: $width - 170px;
+        $padding: $width - 184px;
         float: left;
         width: $width - $padding;
         padding: 0 ($padding / 2);
-        border: 1px solid #ccc;
         margin-right: 10px;
         margin-bottom: 10px;
 
         h4 { text-align: center; }
+        img {
+            border: 1px solid #ccc;
+            padding: 6px;
+            -moz-box-shadow: 0px 0px 3px #aaa;
+        }
     }
 
     .product-group { overflow: hidden; }
