@@ -5,6 +5,10 @@
 // Import font faces
 @import "josefin";
 
+// Global variables
+$page-width: 750px;
+$product-width: ($page-width / 3) - 10px;
+
 // Normalize font sizes
 body { font:13px/1.231 sans-serif; }
 select, input, textarea, button { font:99% sans-serif; }
@@ -15,22 +19,22 @@ select, input, textarea, button { font:99% sans-serif; }
 
 /* Base styles */
 html, body {
-	background-color: #f8f8f8;
+    background-color: #f8f8f8;
     padding: 0;
 }
 
 p {
-	margin: 1em 0;
-	font-family: sans-serif;
+    margin: 1em 0;
+    font-family: sans-serif;
 }
 
 p img.first-letter {
-	float: left;
-	margin: 0 5px 0 5px;
+    float: left;
+    margin: 0 5px 0 5px;
 }
 
 h1, h2, h3, h4 {
-	margin: 0.5em 0;
+    margin: 0.5em 0;
         font-family: 'Josefin';
 }
 
@@ -47,16 +51,16 @@ a {
 }
 
 .header-replace {
-	background-repeat: no-repeat;
-	text-indent: -999px;
-	overflow: hidden;
+    background-repeat: no-repeat;
+    text-indent: -999px;
+    overflow: hidden;
 }
 
 .clearer { clear: both; }
 
 /* Main layout and header */
 #container {
-    width: 750px;
+    width: $page-width;
     margin: 0 auto;
     padding: 0 32px 16px 32px;
     background-color: #fff;
@@ -66,12 +70,12 @@ a {
 }
 
 #header {
-	height: 100px;
+    height: 100px;
 }
 
 /* Navigation and tabs */
 .nav {
-	height: 32px;
+    height: 32px;
  
         li {
                 float: left;
@@ -91,27 +95,27 @@ a {
 
 /* Main content */
 #content {
-	clear: left;
+    clear: left;
         margin-bottom: 2em;
 }
 
 /* Flash message */
 #flashMessage {
-	padding: 1em;
-	margin-bottom: 1em;
-	background-color: #fcc;
-	border: 3px solid #f00;
-	border-radius: 25px;
-	-o-border-radius: 25px;
-	-moz-border-radius: 25px;
-	-icab-border-radius: 25px;
-	-khtml-border-radius: 25px;
-	-webkit-border-radius: 25px;
+    padding: 1em;
+    margin-bottom: 1em;
+    background-color: #fcc;
+    border: 3px solid #f00;
+    border-radius: 25px;
+    -o-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -icab-border-radius: 25px;
+    -khtml-border-radius: 25px;
+    -webkit-border-radius: 25px;
 }
 
 /* Footer */
 #footer {
-	text-align: center;
+    text-align: center;
     clear: both;
 
     p {
@@ -128,14 +132,48 @@ a {
     }
 }
 
+/* Sidebar */
+#sidebar {
+    width: $page-width - ($product-width * 2) - 16px;
+    float: right;
+
+    .browse {
+        margin-left: 16px;
+        background-color: #f8f8f8;
+        border: 1px solid #eee;
+        -moz-border-radius: 12px 0px 12px 0px;
+        -moz-box-shadow: 0px 1px 2px #ddd;
+        margin-bottom: 32px;
+    }
+
+    h4 {
+        padding: 8px 24px;
+        margin: 0;
+    }
+
+    ul {
+        border-top: 1px solid #eee;
+        background-color: #f8f8f8;
+        padding-bottom: 12px;
+
+        li {
+            border-bottom: 1px solid #eee;
+            line-height: 2em;
+            background-color: #fff;
+            padding: 0 24px;
+
+            a { text-decoration: none; }
+        }
+    }
+}
+
 /* Floating product box */
 #products {
     .product-box {
-        $width: 240px;
-        $padding: $width - 184px;
+        $product-padding: $product-width - 184px;
         float: left;
-        width: $width - $padding;
-        padding: 0 ($padding / 2);
+        width: $product-width - $product-padding;
+        padding: 0 ($product-padding / 2);
         margin-right: 10px;
         margin-bottom: 10px;
 
@@ -153,48 +191,48 @@ a {
 
 /* Scaffold View */
 dl {
-	line-height: 2em;
+    line-height: 2em;
     margin-bottom: 1em;
 }
 dt {
-	font-weight: bold;
-	padding-left: 4px;
-	vertical-align: top;
+    font-weight: bold;
+    padding-left: 4px;
+    vertical-align: top;
 }
 dd {
-	margin-left: 10em;
-	margin-top: -2em;
-	vertical-align: top;
+    margin-left: 10em;
+    margin-top: -2em;
+    vertical-align: top;
 }
 
 /* Paging */
 div.paging {
-	color: #ccc;
-	margin-bottom: 2em;
+    color: #ccc;
+    margin-bottom: 2em;
 }
 div.paging div.disabled {
-	color: #ddd;
-	display: inline;
+    color: #ddd;
+    display: inline;
 }
 div.paging span {
 }
 div.paging span.current {
-	color: #000;
+    color: #000;
 }
 div.paging span a {
 }
 
 /* Forms */
 form {
-	clear: both;
-	margin-right: 20px;
-	padding: 0;
-	width: 80%;
+    clear: both;
+    margin-right: 20px;
+    padding: 0;
+    width: 80%;
 }
 fieldset {
-	margin-top: 30px;
-	padding: 16px 20px;
-	border: 1px solid #ddd;
+    margin-top: 30px;
+    padding: 16px 20px;
+    border: 1px solid #ddd;
         
         legend {
                 font: {
@@ -204,83 +242,83 @@ fieldset {
         }
 }
 fieldset fieldset {
-	margin-top: 0px;
-	margin-bottom: 20px;
-	padding: 16px 10px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    padding: 16px 10px;
 }
 fieldset fieldset legend {
-	font-size: 120%;
-	font-weight: normal;
+    font-size: 120%;
+    font-weight: normal;
 }
 fieldset fieldset div {
-	clear: left;
-	margin: 0 20px;
+    clear: left;
+    margin: 0 20px;
 }
 form div {
-	clear: both;
-	margin-bottom: 1em;
-	padding: .5em;
-	vertical-align: text-top;
+    clear: both;
+    margin-bottom: 1em;
+    padding: .5em;
+    vertical-align: text-top;
 }
 form div.input {
-	color: #444;
+    color: #444;
 }
 form div.required {
-	color: #333;
-	font-weight: bold;
+    color: #333;
+    font-weight: bold;
 }
 form div.submit {
-	border: 0;
-	clear: both;
-	margin-top: 10px;
-	margin-left: 140px;
+    border: 0;
+    clear: both;
+    margin-top: 10px;
+    margin-left: 140px;
 }
 label {
-	display: block;
-	padding-right: 20px;
+    display: block;
+    padding-right: 20px;
 }
 input, textarea {
-	clear: both;
-	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
-	padding: 2px;
-	width: 100%;
+    clear: both;
+    font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+    padding: 2px;
+    width: 100%;
 }
 input.button {
-	width: auto;
-	padding: 0;
+    width: auto;
+    padding: 0;
 }
 select {
-	clear: both;
-	vertical-align: text-bottom;
+    clear: both;
+    vertical-align: text-bottom;
 }
 select[multiple=multiple] {
-	width: 100%;
+    width: 100%;
 }
 option {
-	padding: 0 3px;
+    padding: 0 3px;
 }
 input[type=checkbox] {
-	clear: left;
-	float: left;
-	margin: 0px 6px 7px 2px;
-	width: auto;
+    clear: left;
+    float: left;
+    margin: 0px 6px 7px 2px;
+    width: auto;
 }
 input[type=radio] {
-	float:left;
-	width:auto;
-	margin: 0 3px 7px 0;
+    float:left;
+    width:auto;
+    margin: 0 3px 7px 0;
 }
 div.radio label {
-	margin: 0 0 6px 20px;
+    margin: 0 0 6px 20px;
 }
 input[type=submit] {
-	display: inline;
-	padding: 2px 5px;
-	width: auto;
-	vertical-align: bottom;
+    display: inline;
+    padding: 2px 5px;
+    width: auto;
+    vertical-align: bottom;
 }
 textarea.monospace {
-	font-family: monospace;
+    font-family: monospace;
 }
 
 /*  Actions  */
@@ -307,61 +345,61 @@ div.actions ul {
 
 /* Related */
 div.related {
-	clear: both;
-	display: block;
+    clear: both;
+    display: block;
 }
 
 /* Tables */
 .adminIndex table td {
-	font-size: small;
+    font-size: small;
 }
 
 table {
-	background: #fff;
-	border: 1px solid #ccc;
-	clear: both;
-	color: #333;
-	margin-bottom: 10px;
-	width: 100%;
+    background: #fff;
+    border: 1px solid #ccc;
+    clear: both;
+    color: #333;
+    margin-bottom: 10px;
+    width: 100%;
 }
 th {
-	background: #f2f2f2;
-	border:1px solid #ccc;
-	text-align: center;
+    background: #f2f2f2;
+    border:1px solid #ccc;
+    text-align: center;
 }
 th a {
-	background:#f2f2f2;
-	display: block;
-	padding: 2px 4px;
-	text-decoration: none;
+    background:#f2f2f2;
+    display: block;
+    padding: 2px 4px;
+    text-decoration: none;
 }
 th a:hover {
-	background: #ccc;
-	color: #333;
-	text-decoration: none;
+    background: #ccc;
+    color: #333;
+    text-decoration: none;
 }
 table tr td {
-	background: #fff;
-	border-left: 1px solid #ccc;
-	border-right: 1px solid #ccc;
-	padding: 4px;
-	text-align: center;
-	vertical-align: top;
+    background: #fff;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding: 4px;
+    text-align: center;
+    vertical-align: top;
 }
 table tr.altrow td {
-	background: #f4f4f4;
+    background: #f4f4f4;
 }
 td.actions {
-	text-align: left;
-	white-space: nowrap;
+    text-align: left;
+    white-space: nowrap;
 }
 td.actions a {
-	margin: 0px 6px;
+    margin: 0px 6px;
 }
 .cake-sql-log table {
-	background: #f4f4f4;
+    background: #f4f4f4;
 }
 .cake-sql-log td {
-	padding: 4px 8px;
-	text-align: left;
+    padding: 4px 8px;
+    text-align: left;
 }

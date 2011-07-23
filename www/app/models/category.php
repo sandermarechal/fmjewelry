@@ -56,20 +56,10 @@ class Category extends AppModel
 	}
 
 	/**
-	 * Get the subcategories of the current category
-	 * @param string $id The category ID
+	 * Get the subcategories
 	 */
-	public function getSubcategories($id = null)
+	public function getSubcategories()
 	{
-		if (!$id) {
-			$id = $this->id;
-		}
-
-		$category = $this->read('root', $id);
-		if (!$category['Category']['root']) {
-			return array();
-		}
-
 		return $this->find('all', array(
 			'conditions' => array('Category.root' => 0),
 		));

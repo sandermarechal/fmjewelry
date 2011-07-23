@@ -39,7 +39,10 @@ class User extends AppModel
 	);
 
 	/** @var array Use Containable */
-	public $actsAs = array('Containable');
+    public $actsAs = array(
+        'Containable',
+		'Sluggable' => array('label' => 'name', 'overwrite' => true),
+    );
 
 	/**
 	 * Get the sha1 hash of a certain field
@@ -94,6 +97,26 @@ class User extends AppModel
 
 		return false;
 	}
+
+    /**
+     * Find all users that are member of the Mailers group
+     * 
+     * @return void
+     */
+    public function getMailers()
+    {
+        $group = $this->Group->find('first', array(
+            'contain' => array('User'),
+            'conditions' => array('Group.name' => 'Mailers'),
+        ));
+
+        $users = array();
+        foreach ($group['User'] as $user) {
+            $users[] = array('User' => $user);
+        }
+
+        return $users;
+    }
 
 	/**
 	 * After creating a new user, add them to all the default groups

@@ -20,6 +20,9 @@ class CategoriesController extends AppController
 	/** @var array The helpers for the controller */
 	public $helpers = array('Html', 'Form', 'Button');
 
+    /** @var array The models to use */
+    public $uses = array('Category', 'User');
+
 	/**
 	 * Set the auth permissions for this controller
 	 * @return void
@@ -42,11 +45,8 @@ class CategoriesController extends AppController
 			$this->cakeError('error404');
 		}
 
-		$subcategories = $this->Category->getSubcategories($category['Category']['id']);
-		$products = $this->Category->getProducts($category['Category']['id']);
-
-		$this->set(compact('category', 'subcategories', 'products'));
-		$this->render('view');
+        $this->view($category['Category']['slug']);
+        $this->render('view');
 	}
 
 	/**
@@ -67,10 +67,11 @@ class CategoriesController extends AppController
 			$this->redirect('/');
 		}
 
-		$subcategories = $this->Category->getSubcategories($category['Category']['id']);
+		$subcategories = $this->Category->getSubcategories();
 		$products = $this->Category->getProducts($category['Category']['id']);
+        $mailers = $this->User->getMailers();
 
-		$this->set(compact('category', 'subcategories', 'products'));
+		$this->set(compact('category', 'subcategories', 'products', 'mailers'));
 	}
 
 	/**
