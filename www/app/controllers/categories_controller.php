@@ -46,7 +46,6 @@ class CategoriesController extends AppController
 		}
 
         $this->view($category['Category']['slug']);
-        $this->render('view');
 	}
 
 	/**

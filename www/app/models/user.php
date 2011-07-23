@@ -31,6 +31,7 @@ class User extends AppModel
 	public $hasMany = array(
                 'Address' => array('dependent' => true),
                 'Image',
+                'Product',
 	);
 
 	/** @var array Many-to-many relationships */
@@ -117,6 +118,37 @@ class User extends AppModel
 
         return $users;
     }
+
+	/**
+	 * Get all the products for a user
+	 * @param string $id The user ID
+	 */
+	public function getProducts($id = null)
+	{
+		if (!$id) {
+			$id = $this->id;
+		}
+
+		$user = $this->find('first', array(
+			'contain' => array(
+				'Product',
+                'Product.Image',
+			),
+			'conditions' => array('User.id' => $id),
+		));
+
+		$products = array();
+		foreach ($user['Product'] as $product) {
+            if (count($product['Image'])) {
+                $this->Product->Image->id = $product['Image'][0]['id'];
+                $product['image'] = $this->Product->Image->getPath(170);
+                unset($product['Image']);
+            }
+			$products[] = array('Product' => $product);
+		}
+
+		return $products;
+	}
 
 	/**
 	 * After creating a new user, add them to all the default groups
