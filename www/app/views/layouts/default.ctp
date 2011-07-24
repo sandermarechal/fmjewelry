@@ -22,12 +22,12 @@
 			<ul>
 				<li><a href="/">Home</a></li>
 				<?php if ($Auth):?>
-                                        <li><a href="/users/view">Your account</a></li>
-                                        <li><a href="/users/logout">Logout</a></li>
+                    <li><a href="/users/view">Your account</a></li>
+                    <li><a href="/users/logout">Logout</a></li>
 				<?php else:?>
-                                        <li><a href="/users/login">Login</a></li>
-                                        <li><a href="/users/register">Register</a></li>
+                    <li><a href="/users/login">Login</a></li>
 				<?php endif;?>
+                <li><a href="/pages/contact">Contact</a></li>
 			</ul>
 		</div>
 		<div id="content">

@@ -57,7 +57,7 @@ class AppController extends Controller
 	public function beforeRender()
 	{
 		$adminControllers = array();
-		$adminBlacklist = array('Addresses', 'App', 'Mailers', 'Pages', 'Permissions'); // Never show these
+		$adminBlacklist = array('Addresses', 'App', 'Contact', 'Mailers', 'Pages', 'Permissions'); // Never show these
 		if ($this->Auth->user()) {
 			$controllers = Configure::listObjects('controller');
 			sort($controllers);

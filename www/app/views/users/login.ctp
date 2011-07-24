@@ -7,7 +7,8 @@
 	}
 ?>
 
-<p><?php echo $letter->img('E');?>nter your account details to log in. If you cannot remember your password,
+<p><?php echo $letter->img('E');?>nter your account details to log in. If you do not have an account yet, you can
+<a href="/users/register">register a new account</a>. If you cannot remember your password,
 you can use our <a href="/users/recover">password recovery</a> form to reset your password.</p>
 
 <?php echo $form->create('User', array('action' => 'login')); ?>
