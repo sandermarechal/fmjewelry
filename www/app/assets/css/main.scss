@@ -17,6 +17,13 @@ select, input, textarea, button { font:99% sans-serif; }
         @return ($size / 13px) * 100%;
 }
 
+/* Mixins */
+@mixin polaroid {
+    border: 1px solid #ccc;
+    padding: 6px;
+    -moz-box-shadow: 0px 0px 3px #aaa;
+}
+
 /* Base styles */
 html, body {
     background-color: #f8f8f8;
@@ -54,6 +61,11 @@ em { font-style: italic; }
 strong { font-weight: bold; }
 pre { font-family: monospace; }
 
+ul {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
 .header-replace {
     background-repeat: no-repeat;
     text-indent: -999px;
@@ -81,6 +93,8 @@ pre { font-family: monospace; }
 .nav {
     height: 32px;
     clear: both;
+
+    ul { list-style-type: none; }
  
     li {
         float: left;
@@ -160,6 +174,7 @@ pre { font-family: monospace; }
         border-top: 1px solid #eee;
         background-color: #f8f8f8;
         padding-bottom: 12px;
+        list-style-type: none;
 
         li {
             border-bottom: 1px solid #eee;
@@ -183,15 +198,39 @@ pre { font-family: monospace; }
         margin-bottom: 10px;
 
         h4 { text-align: center; }
-        img {
-            border: 1px solid #ccc;
-            padding: 6px;
-            -moz-box-shadow: 0px 0px 3px #aaa;
+        a.product-thumb {
+            width: 162px;
+            display: block;
+            margin: 0 auto;
+            img { @include polaroid; }
         }
     }
 
     .product-group { overflow: hidden; }
     .last { margin-right: 0px; }
+}
+
+/* Product view */
+#product-view {
+    a.product-image {
+        float: left;
+        margin: 0 12px 12px 0;
+        
+        &.spotlight { margin: 0 32px 32px 0; }
+
+        img { @include polaroid; }
+    }
+}
+
+#add-to-cart {
+    clear: left;
+
+    input { margin-left: 24px; }
+}
+
+#product-images {
+    clear: both;
+    margin-top: 32px;
 }
 
 /* Scaffold View */

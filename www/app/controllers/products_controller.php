@@ -13,59 +13,71 @@
  */
 class ProductsController extends AppController
 {
-	/** @var array The view helpers */
-	public $helpers = array('Html', 'Form', 'Button', 'Javascript');
+    /** @var array The view helpers */
+    public $helpers = array('Html', 'Form', 'Button', 'Javascript');
 
-	/** @var array The components for this controller */
-	public $components = array('Auth');
+    /** @var array The components for this controller */
+    public $components = array('Auth');
 
-        /* @var array Models to use */
-        public $uses = array('ImagesProduct', 'Product');
+    /* @var array Models to use */
+    public $uses = array('Category', 'ImagesProduct', 'Product', 'User');
 
-	/**
-	 * Set the auth permissions for this controller
-	 * @return void
-	 */
-	public function beforeFilter()
-	{
-		parent::beforeFilter();
-		$this->Auth->allow('index', 'view');
-	}
+    /**
+     * Set the auth permissions for this controller
+     * @return void
+     */
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
+        $this->Auth->allow('index', 'view');
+    }
 
-	public function index()
-	{
-		$this->redirect('/');
-	}
+    public function index()
+    {
+        $this->redirect('/');
+    }
 
-	public function view($slug = null)
-	{
-		if (!$slug) {
-			$this->Session->setFlash(__('Invalid Product.', true));
-			$this->redirect(array('controller' => 'categories', 'action' => 'index'));
-		}
+    public function view($slug = null)
+    {
+        if (!$slug) {
+            $this->Session->setFlash(__('Invalid Product.', true));
+            $this->redirect(array('controller' => 'categories', 'action' => 'index'));
+        }
 
-		// Get the product
-		$this->Product->contain(array('Category'));
-		$product = $this->Product->findBySlug($slug);
-		$this->set(compact('product'));
-	}
+        // Get the product
+        $this->Product->contain(array('Image' => array('order' => array('ImagesProduct.order'))));
+        $product = $this->Product->findBySlug($slug);
 
-	public function admin_index()
-	{
+        foreach ($product['Image'] as &$image) {
+            $this->Product->Image->id = $image['id'];
+            $this->Product->Image->thumb(160);
+            $image['path_thumb'] = $this->Product->Image->getPath(160);
+            $image['path_full'] = $this->Product->Image->getPath();
+        }
+
+        // Data for the sidebar
+        $subcategories = $this->Category->getSubcategories();
+        $mailers = $this->User->getMailers();
+
+        $this->set(compact('product', 'subcategories', 'mailers'));
+    }
+
+    public function admin_index()
+    {
                 $this->paginate = array('Product' => array(
                         'contain' => array('Category', 'User'),
                 ));
 
                 $products = $this->paginate('Product');
-		$this->set(compact('products'));
-	}
+        $this->set(compact('products'));
+    }
 
-	public function admin_view($id = null)
-	{
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid Product.', true));
-			$this->redirect(array('action'=>'index'));
-		}
+    public function admin_view($id = null)
+    {
+        if (!$id) {
+            $this->Session->setFlash(__('Invalid Product.', true));
+            $this->redirect(array('action'=>'index'));
+        }
 
                 $this->Product->contain(array(
                         'Category',
@@ -73,7 +85,7 @@ class ProductsController extends AppController
                         'User'
                 ));
 
-		$product = $this->Product->read(null, $id);
+        $product = $this->Product->read(null, $id);
                 foreach ($product['Image'] as &$image) {
                         $this->Product->Image->id = $image['id'];
                         $this->Product->Image->thumb(170);
@@ -89,27 +101,27 @@ class ProductsController extends AppController
                         'recursive' => -1,
                 ));
 
-		$this->set(compact('product', 'images'));
-	}
+        $this->set(compact('product', 'images'));
+    }
 
-	public function admin_add()
-	{
-		if (!empty($this->data)) {
-			$this->Product->create();
+    public function admin_add()
+    {
+        if (!empty($this->data)) {
+            $this->Product->create();
                         $this->data['Product']['user_id'] = $this->Auth->user('id');
-			if ($this->Product->save($this->data)) {
-				$this->Session->setFlash(__('The Product has been saved', true));
-				$this->redirect(array('action'=>'index'));
-			} else {
-				$this->Session->setFlash(__('The Product could not be saved. Please, try again.', true));
-			}
-		}
+            if ($this->Product->save($this->data)) {
+                $this->Session->setFlash(__('The Product has been saved', true));
+                $this->redirect(array('action'=>'index'));
+            } else {
+                $this->Session->setFlash(__('The Product could not be saved. Please, try again.', true));
+            }
+        }
 
-		$categories = $this->Product->Category->find('list');
+        $categories = $this->Product->Category->find('list');
 
-		$this->set(compact('categories', 'images'));
-		$this->render('admin_edit');
-	}
+        $this->set(compact('categories', 'images'));
+        $this->render('admin_edit');
+    }
 
         private function _checkAccess($id)
         {
@@ -118,62 +130,62 @@ class ProductsController extends AppController
                 return ($this->Auth->user('id') == $user_id);
         }
 
-	public function admin_edit($id = null)
-	{
-		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid Product', true));
-			$this->redirect(array('action'=>'index'));
-		}
+    public function admin_edit($id = null)
+    {
+        if (!$id && empty($this->data)) {
+            $this->Session->setFlash(__('Invalid Product', true));
+            $this->redirect(array('action'=>'index'));
+        }
 
-		if (!empty($this->data)) {
+        if (!empty($this->data)) {
                         if (!$this->_checkAccess($this->data['Product']['id'])) {
-				$this->Session->setFlash(__('You are not allowed to edit that product', true));
-				$this->redirect(array('action'=>'index'));
+                $this->Session->setFlash(__('You are not allowed to edit that product', true));
+                $this->redirect(array('action'=>'index'));
                         }
 
-			if ($this->Product->save($this->data)) {
-				$this->Session->setFlash(__('The Product has been saved', true));
-				$this->redirect(array('action'=>'index'));
-			} else {
-				$this->Session->setFlash(__('The Product could not be saved. Please, try again.', true));
-			}
-		}
+            if ($this->Product->save($this->data)) {
+                $this->Session->setFlash(__('The Product has been saved', true));
+                $this->redirect(array('action'=>'index'));
+            } else {
+                $this->Session->setFlash(__('The Product could not be saved. Please, try again.', true));
+            }
+        }
 
-		if (empty($this->data)) {
+        if (empty($this->data)) {
                         if (!$this->_checkAccess($id)) {
                                 $this->Session->setFlash(__('You are not allowed to edit that product', true));
                                 $this->redirect(array('action'=>'index'));
                         }
 
-			$this->data = $this->Product->read(null, $id);
-		}
+            $this->data = $this->Product->read(null, $id);
+        }
 
-		$categories = $this->Product->Category->find('list');
-		$this->set(compact('categories','images'));
-	}
+        $categories = $this->Product->Category->find('list');
+        $this->set(compact('categories','images'));
+    }
 
-	public function admin_delete($id = null)
-	{
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for Product', true));
-			$this->redirect(array('action'=>'index'));
-		}
+    public function admin_delete($id = null)
+    {
+        if (!$id) {
+            $this->Session->setFlash(__('Invalid id for Product', true));
+            $this->redirect(array('action'=>'index'));
+        }
 
                 if (!$this->_checkAccess($id)) {
                         $this->Session->setFlash(__('You are not allowed to delete that product', true));
                         $this->redirect(array('action'=>'index'));
                 }
 
-		if ($this->Product->del($id)) {
-			$this->Session->setFlash(__('Product deleted', true));
-			$this->redirect(array('action'=>'index'));
-		}
-	}
+        if ($this->Product->del($id)) {
+            $this->Session->setFlash(__('Product deleted', true));
+            $this->redirect(array('action'=>'index'));
+        }
+    }
 
         public function admin_attach()
         {
                 if (empty($this->data)) {
-			$this->redirect(array('action'=>'index'));
+            $this->redirect(array('action'=>'index'));
                 }
 
                 $data = $this->data['ImagesProduct'];

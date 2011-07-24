@@ -40,8 +40,8 @@ class ImagesController extends AppController {
                 $images = $this->paginate();
                 foreach ($images as &$image) {
                         $this->Image->id = $image['Image']['id'];
-                        $this->Image->thumb(170);
-                        $image['Image']['thumb'] = '/img/products/' . $this->Image->getPath(170);
+                        $this->Image->thumb(150);
+                        $image['Image']['thumb'] = '/img/products/' . $this->Image->getPath(150);
                 }
 
 		$this->set(compact('images'));

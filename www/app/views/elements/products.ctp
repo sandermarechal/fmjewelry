@@ -6,9 +6,8 @@
                 <h4><?php echo $this->Html->link($product['Product']['name'], array('controller' => 'products', 'action' => 'view', $product['Product']['slug'])); ?></h4>
                 <?php
                     if (isset($product['Product']['image'])) {
-                        echo $html->image('/img/products/' . $product['Product']['image'], array(
-                            'url' => array('controller' => 'products', 'action' => 'view', $product['Product']['slug']),
-                        ));
+                        printf('<a href="/products/view/%s" class="product-thumb"><img src="/img/products/%s"></a>',
+                            $product['Product']['slug'], $product['Product']['image']);
                     }
                 ?>
                 <p><?php echo $product['Product']['lead']; ?></p>

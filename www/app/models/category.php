@@ -88,7 +88,8 @@ class Category extends AppModel
 			unset($product['CategoriesProduct']);
             if (count($product['Image'])) {
                 $this->Product->Image->id = $product['Image'][0]['id'];
-                $product['image'] = $this->Product->Image->getPath(170);
+                $this->Product->Image->thumb(150);
+                $product['image'] = $this->Product->Image->getPath(150);
                 unset($product['Image']);
             }
 			$products[] = array('Product' => $product);
