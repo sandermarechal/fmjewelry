@@ -27,6 +27,7 @@
 				<?php else:?>
                     <li><a href="/users/login">Login</a></li>
 				<?php endif;?>
+                <li><a href="/cart">Cart</a></li>
                 <li><a href="/pages/contact">Contact</a></li>
 			</ul>
 		</div>

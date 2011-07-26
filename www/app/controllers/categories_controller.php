@@ -2,7 +2,7 @@
 
 /**
  * Full Metal Jewelry website
- * Copyright (C) 2009 Stichting Lone Wolves
+ * Copyright (C) 2011 Stichting Lone Wolves
  * Written by Sander Marechal <s.marechal@jejik.com>
  *
  * Licensed under The MIT License

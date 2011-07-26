@@ -1,13 +1,4 @@
-<script type="text/javascript">
-	$(function() {
-		$('#addressAdd input').change(function() {
-			$('#address_new').attr('checked', 'checked');
-		});
-
-	});
-</script>
-
-<?php $javascript->link('jquery-1.3.2.min.js', false); ?>
+<?php $javascript->link('jquery-1.4.2.min.js', false); ?>
 
 <?php if ($type == 'shipping'): ?>
         <h2>Shipping address</h2>
@@ -64,9 +55,24 @@
 	?>
 </fieldset>
 
-<div class="submit">
-	<?php echo $button->link('Back', '/cart/checkout/back'); ?>
-	<?php echo $button->submit('Continue', array('div' => false));?>
+<div class="actions submit">
+    <ul>
+	    <li><?php echo $this->Html->link('Back', '/cart/checkout/back'); ?></li>
+	    <li><?php echo $this->Html->link('Continue', '#', array('id' => 'submit')); ?></li>
+    </ul>
 </div>
 
 </form>
+
+<script type="text/javascript">
+	$(function() {
+		$('#addressAdd input').change(function() {
+			$('#address_new').attr('checked', 'checked');
+		});
+
+        $('#submit').click(function() {
+            $('#AddressSelectForm').submit();
+            return false;
+        })
+	});
+</script>
