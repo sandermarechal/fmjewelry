@@ -98,7 +98,7 @@ ul {
  
     li {
         float: left;
-        margin-right: 2em;
+        margin-right: 1em;
 
         font: {
             family: 'Josefin';
@@ -231,6 +231,11 @@ ul {
 #product-images {
     clear: both;
     margin-top: 32px;
+}
+
+/* Cart */
+tr.total td {
+    border-top: 1px solid #ccc;
 }
 
 /* Contact form */

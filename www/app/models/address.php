@@ -68,9 +68,6 @@ class Address extends AppModel
 	 */
 	public function beforeSave()
 	{
-		// TODO: Remove this when the order model has been copied
-		return true;
-
 		if ($this->id) {
 			$Order =& ClassRegistry::init('Order');
 

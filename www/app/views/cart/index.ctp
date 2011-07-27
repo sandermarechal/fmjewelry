@@ -18,6 +18,12 @@
                 </td>
             </tr>
             <?php endforeach; ?>
+            <tr class="total">
+                <td>Total</td>
+                <td>&nbsp;</td>
+                <td>&euro; <?php echo $price_total; ?></td>
+                <td>&nbsp;</td>
+            </tr>
         </table>
     </div>
 

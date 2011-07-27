@@ -1,6 +1,9 @@
+<?php $this->Html->script('jquery-1.4.2.min.js', array('inline' => false)); ?>
+
 <h2>Confirm your order</h2>
 
 <form id="cartConfirm" method="post" action="/cart/confirm">
+<input type="hidden" name="data[confirm]" value="true" />
 
 <fieldset>
 	<legend>Invoice</legend>
@@ -30,13 +33,18 @@
             <td class="price">&euro; <?php echo $item['price_total']; ?></td>
         </tr>
         <?php endforeach; ?>
+        <tr class="total">
+            <td>Total</td>
+            <td>&nbsp;</td>
+            <td>&euro; <?php echo $price_total; ?></td>
+        </tr>
     </table>
 </fieldset>
 
 <div class="actions submit">
     <ul>
 	    <li><?php echo $this->Html->link('Back', '/cart/checkout/back'); ?></li>
-	    <li><?php echo $this->Html->link('Continue', '#', array('id' => 'submit')); ?></li>
+	    <li><?php echo $this->Html->link('Confirm', '#', array('id' => 'submit')); ?></li>
     </ul>
 </div>
 
@@ -45,7 +53,7 @@
 <script type="text/javascript">
 	$(function() {
         $('#submit').click(function() {
-            $('#AddressSelectForm').submit();
+            $('#cartConfirm').submit();
             return false;
         })
 	});
