@@ -8,8 +8,8 @@
 
 <div class="actions">
 	<ul>
-		<li><?php echo $button->link('All', array('all'));?></li>
-		<li><?php echo $button->link('Pending', array('pending'));?></li>
+		<li><?php echo $this->Html->link('All', array('all'));?></li>
+		<li><?php echo $this->Html->link('Pending', array('pending'));?></li>
 	</ul>
 </div>
 
@@ -27,7 +27,6 @@
 	<th><?php echo $paginator->sort('Submitted', 'created');?></th>
 	<th><?php echo $paginator->sort('invoiced');?></th>
 	<th><?php echo $paginator->sort('paid');?></th>
-	<th><?php echo $paginator->sort('ordered');?></th>
 	<th><?php echo $paginator->sort('shipped');?></th>
 	<th class="actions"><?php __('Actions');?></th>
 </tr>
@@ -50,9 +49,6 @@
 		</td>
 		<td>
 			<?php echo $order['Order']['paid'] == '0000-00-00 00:00:00' ? '-' : substr($order['Order']['paid'], 0, 10); ?>
-		</td>
-		<td>
-			<?php echo $order['Order']['ordered'] == '0000-00-00 00:00:00' ? '-' : substr($order['Order']['ordered'], 0, 10); ?>
 		</td>
 		<td>
 			<?php echo $order['Order']['shipped'] == '0000-00-00 00:00:00' ? '-' : substr($order['Order']['shipped'], 0, 10); ?>

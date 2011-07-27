@@ -19,7 +19,7 @@
 			<?php
 				if ($this->action == 'admin_view') {
 					if ($order['Order']['invoiced'] == '0000-00-00 00:00:00') {
-						echo $button->link('Invoice now', array('action' => 'invoice', $order['Order']['id']));
+						echo $this->Html->link('Invoice now', array('action' => 'invoice', $order['Order']['id']));
 					} else {
 						echo $order['Order']['invoiced'] == '0000-00-00 00:00:00' ? '-' : $order['Order']['invoiced'];
 					}
@@ -31,9 +31,6 @@
 
 		<dt>Invoice paid</dt>
 		<dd><?php echo $this->element('stamp', array('order' => $order, 'field' => 'paid')); ?></dd>
-
-		<dt>Order started</dt>
-		<dd><?php echo $this->element('stamp', array('order' => $order, 'field' => 'ordered')); ?></dd>
 
 		<dt>Order shipped</dt>
 		<dd><?php echo $this->element('stamp', array('order' => $order, 'field' => 'shipped')); ?></dd>

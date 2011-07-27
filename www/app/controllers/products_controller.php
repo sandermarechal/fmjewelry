@@ -176,7 +176,7 @@ class ProductsController extends AppController
                         $this->redirect(array('action'=>'index'));
                 }
 
-        if ($this->Product->del($id)) {
+        if ($this->Product->delete($id)) {
             $this->Session->setFlash(__('Product deleted', true));
             $this->redirect(array('action'=>'index'));
         }

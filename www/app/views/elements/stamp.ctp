@@ -1,6 +1,6 @@
 <?php
 
-$fields = array('invoiced', 'paid', 'ordered', 'shipped');
+$fields = array('invoiced', 'paid', 'shipped');
 $settable = true;
 
 foreach ($fields as $f) {

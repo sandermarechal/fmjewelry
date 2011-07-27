@@ -115,7 +115,7 @@ class GroupsController extends AppController
 			$this->Session->setFlash(__('Invalid id for Group', true));
 			$this->redirect(array('action'=>'index'));
 		}
-		if ($this->Group->del($id, true)) {
+		if ($this->Group->delete($id, true)) {
 			$this->Session->setFlash(__('Group deleted', true));
 			$this->redirect(array('action'=>'index'));
 		}

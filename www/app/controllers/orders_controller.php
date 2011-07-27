@@ -111,7 +111,6 @@ class OrdersController extends AppController
         $order = $this->Order->find('first', array(
             'contain' => array(
                 'OrderLine',
-                'OrderLine.OrderPart',
                 'ShippingAddress',
                 'BillingAddress',
                 'User',
@@ -159,7 +158,7 @@ class OrdersController extends AppController
             $this->Session->setFlash(__('Invalid id for Order', true));
             $this->redirect(array('action'=>'index'));
         }
-        if ($this->Order->del($id)) {
+        if ($this->Order->delete($id)) {
             $this->Session->setFlash(__('Order deleted', true));
             $this->redirect(array('action'=>'index'));
         }
@@ -210,7 +209,6 @@ class OrdersController extends AppController
         $order = $this->Order->find('first', array(
             'contain' => array(
                 'OrderLine',
-                'OrderLine.OrderPart',
                 'ShippingAddress',
                 'BillingAddress',
                 'User',
@@ -220,7 +218,10 @@ class OrdersController extends AppController
             ),
         ));
 
-        $this->set('order', $order);
+        $this->set(array(
+            'order' => $order,
+            'admin' => $this->Auth->user('name'),
+        ));
     }
 
     /**

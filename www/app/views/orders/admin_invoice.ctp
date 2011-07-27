@@ -9,9 +9,13 @@ invoice. Please edit the products in the order themselves before sending the inv
 
 	<div class="input">
 		<label for="">Invoice text</label>
-		<textarea name="data[Order][invoice_text]" cols="80" rows="30" class="monospace"><?php echo $this->element('invoice', array('cart' => $order['OrderProduct'], 'priceTotal' => $order['Order']['price'])); ?></textarea>
-		<p>Edit app/views/elements/invoice.ctp to change the default invoice.</p>
+        <textarea name="data[Order][invoice_text]" cols="80" rows="30" class="monospace">
+            <?php echo $this->element('invoice', array(
+                'cart' => $order['OrderLine'],
+                'price_total' => $order['Order']['price'],
+                'admin' => $admin,
+            )); ?>
+        </textarea>
 	</div>
 
-	<?php echo $button->submit('Send invoice');?>
-</form>
+<?php echo $this->Form->end('Send invoice');?>

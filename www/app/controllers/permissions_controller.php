@@ -64,7 +64,7 @@ class PermissionsController extends AppController
 		$this->Permission->id = $id;
 		$group_id = $this->Permission->field('group_id');
 
-		if ($this->Permission->del($id)) {
+		if ($this->Permission->delete($id)) {
 			$this->Session->setFlash(__('Permission deleted', true));
 			$this->redirect(array('controller' => 'groups', 'action'=>'view', $group_id));
 		}

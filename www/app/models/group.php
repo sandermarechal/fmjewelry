@@ -71,7 +71,7 @@ class Group extends AppModel
 		)));
 
 		if (!empty($relation)) {
-			if (!$this->GroupsUser->del($relation['GroupsUser']['id'])) {
+			if (!$this->GroupsUser->delete($relation['GroupsUser']['id'])) {
 				return false;
 			}
 		}
