@@ -1,7 +1,7 @@
 <?php
 /**
- * Feral Penguin Pty Ltd website
- * Copyright (C) 2009 Stichting Lone Wolves
+ * Full Metal Jewelry website
+ * Copyright (C) 2011 Stichting Lone Wolves
  * Written by Sander Marechal <s.marechal@jejik.com>
  *
  * Licensed under The MIT License
@@ -180,7 +180,7 @@ class OrdersController extends AppController
 
             $this->Email->to = $this->Order->User->field('email_address');
             $this->Email->cc = array(Configure::read('Email.admin'));
-            $this->Email->subject = __('[Feral Penguin] Invoice for order ' . sprintf('%06d', $this->data['Order']['id']), true);
+            $this->Email->subject = __('[Full Metal Jewelry] Invoice for order ' . sprintf('%06d', $this->data['Order']['id']), true);
             $this->Email->from = Configure::read('Email.admin');
             $this->Email->template = 'invoice';
             $this->Email->sendAs = 'text';

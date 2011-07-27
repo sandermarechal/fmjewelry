@@ -48,9 +48,10 @@
 		</div>
 	</div>
     <div id="footer">
-        <p>&copy; 2010 Full Metal Jewelry
+        <p>&copy; Copyright 2010-<?php echo date('Y'); ?> Full Metal Jewelry
+        | Some rights reserved
         | Design by <a href="http://www.jejik.com">Lone Wolves</a>
-        | Valid XHTML, CSS, WCAG 1.0 A</p>
+        | View <a href="http://github.com/sandermarechal/fmjewelry">source code</a></p>
     </div>
 	<?php echo $this->element('sql_dump'); ?>
 </body>
