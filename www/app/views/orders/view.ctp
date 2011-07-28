@@ -48,18 +48,24 @@
             <th>Item</th>
             <th>Quantity</th>
             <th>Price</th>
+            <th>Actions</th>
         </tr>
         <?php foreach ($order['OrderLine'] as $line): ?>
         <tr>
             <td class="item"><?php echo $line['name']; ?></td>
             <td class="qty"><?php echo $line['quantity']; ?></td>
             <td class="price">&euro; <?php echo $line['price_total']; ?></td>
+            <td>
+                <?php echo $html->link(__('Edit', true), array('controller' => 'order_lines', 'action'=>'edit', $line['id'])); ?>
+                <?php echo $html->link(__('Delete', true), array('controller' => 'order_lines', 'action'=>'delete', $line['id']), null, __('Are you sure you want to delete this line?', true)); ?>
+            </td>
         </tr>
         <?php endforeach; ?>
         <tr class="total">
             <td>Total</td>
             <td>&nbsp;</td>
             <td>&euro; <?php echo $order['Order']['price']; ?></td>
+            <td>&nbsp;</td>
         </tr>
     </table>
 	<?php
@@ -72,7 +78,7 @@
         <li>
             <?php
                 if ($this->action == 'admin_view') {
-                    echo $this->Html->link('Add a line', array('controller' => 'order_products', 'action' => 'add', $order['Order']['id']));
+                    echo $this->Html->link('Add a line', array('controller' => 'order_lines', 'action' => 'add', $order['Order']['id']));
                 } else {
                     echo $this->Html->link('Back', '/orders');
                 }

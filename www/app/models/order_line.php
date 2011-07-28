@@ -34,14 +34,9 @@ class OrderLine extends AppModel
         $price    = $product['OrderLine']['price'];
         $quantity = $product['OrderLine']['quantity'];
 
-        foreach($product['OrderPart'] as $part) {
-            $price = bcadd($price, $part['price'], 2);
-        }
-
         $this->create(false);
         $this->save(array('OrderLine' => array(
             'id' => $id,
-            'price_piece' => $price,
             'price_total' => bcmul($price, $quantity, 2),
         )));
     }
@@ -69,12 +64,6 @@ class OrderLine extends AppModel
                 ? $this->data['OrderLine']['quantity']
                 : $product['OrderLine']['quantity'];
 
-            $parts = $this->OrderPart->find('all', array('OrderPart.order_product_id' => $this->id));
-            foreach ($parts as $part) {
-                $price = bcadd($price, $part['OrderPart']['price'], 2);
-            }
-
-            $this->data['OrderLine']['price_piece'] = $price;
             $this->data['OrderLine']['price_total'] = bcmul($price, $quantity, 2);
 
             return true;
