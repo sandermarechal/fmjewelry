@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Full Metal Jewelry" description="A website to sell maille trinkets" default="build">
 
-        <property file="build.properties" />
+    <property file="build.properties" />
 
-        <target name="build" description="Build the application" depends="clean,css" />
-        
-        <target name="clean" description="Clean cache files">
-                <delete>
-                        <fileset dir="${project.basedir}/www/app/tmp/cache">
-                                <include name="models/cake_*" />
-                                <include name="persistent/cake_*" />
-                        </fileset>
-                </delete>
-        </target>
+    <target name="build" description="Build the application" depends="clean,css" />
+    
+    <target name="clean" description="Clean cache files">
+        <delete>
+            <fileset dir="${project.basedir}/www/app/tmp/cache">
+                <include name="models/cake_*" />
+                <include name="persistent/cake_*" />
+            </fileset>
+        </delete>
+    </target>
 
-        <target name="css" description="Build CSS assets">
-                <!-- Delete generated CSS -->
-                <delete>
-                        <fileset dir="${sass.builddir}">
-                                <include name="main.css" />
-                        </fileset>
-                </delete>
+    <target name="-css-check" unless="css.force">
+        <uptodate property="css.uptodate">
+            <fileset dir="${sass.assetdir}">
+                <include name="*.scss" />
+                <exclude name="_*.scss" />
+            </fileset>
+            <mapper type="glob" from="*.scss" to="${sass.builddir}/*.css" />
+        </uptodate>
+    </target>
 
-                <!-- Create directory because it may not exist in a fresh checkout -->
-                <mkdir dir="${sass.builddir}" />
+    <target name="css" depends="-css-check" unless="css.uptodate" description="Build CSS assets">
+        <!-- Create directory because it may not exist in a fresh checkout -->
+        <mkdir dir="${sass.builddir}" />
 
-                <!-- Compile SASS/SCSS -->
-                <exec command="${sass.bin} --style ${sass.style} --update ${sass.assetdir}:${sass.builddir}"
-                      dir="${project.basedir}"
-                      logoutput="true"
-                      checkreturn="true"
-                />
-        </target>
+        <!-- Compile SASS/SCSS -->
+        <exec command="${sass.bin} --style ${sass.style} --update ${sass.assetdir}:${sass.builddir}"
+              dir="${project.basedir}"
+              logoutput="true"
+              checkreturn="true"
+        />
+    </target>
 
 </project>
