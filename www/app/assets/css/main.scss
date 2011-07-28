@@ -121,15 +121,15 @@ ul {
 /* Flash message */
 #flashMessage {
     padding: 1em;
-    margin-bottom: 1em;
-    background-color: #fcc;
-    border: 3px solid #f00;
+    margin: 1em 0;
+    background-color: #eef;
+    border: 1px solid #4183c4;
     border-radius: 25px;
-    -o-border-radius: 25px;
-    -moz-border-radius: 25px;
-    -icab-border-radius: 25px;
-    -khtml-border-radius: 25px;
-    -webkit-border-radius: 25px;
+    -o-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -icab-border-radius: 12px;
+    -khtml-border-radius: 12px;
+    -webkit-border-radius: 12px;
 }
 
 /* Footer */
