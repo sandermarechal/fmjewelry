@@ -43,9 +43,13 @@ echo str_repeat('=', 60) . "\n";
 
 ?>
 
-Please wire the $ <?php echo number_format($order['Order']['price'], 2); ?> to my secret account in the Bahama's
-under account number 000-l33t-a5-h311. If you do not then I will
-send my goon squad around, m'kay?
+
+Please send EUR <?php echo number_format($order['Order']['price'], 2); ?> via PayPal to the following address:
+
+sales@fullmetaljewelry.com
+
+If you are unable to pay via PayPal, please contact us
+for other payment options.
 
 Sincerely, 
 

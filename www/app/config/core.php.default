@@ -249,7 +249,7 @@
 /**
  * The admin e-mail address
  */
-	Configure::write('Email.admin', 'webmaster@example.org');
+	Configure::write('Email.admin', 'sales@fullmetaljewelry.com');
 
 /**
  *
