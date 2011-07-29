@@ -1,4 +1,4 @@
-<?php $this->Html->script('jquery-1.4.3.min.js', array('inline' => false)); ?>
+<?php $this->Html->script('jquery-1.6.2.min.js', array('inline' => false)); ?>
 
 <?php if ($type == 'shipping'): ?>
         <h2>Shipping address</h2>
