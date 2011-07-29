@@ -1,4 +1,4 @@
-<?php $this->Html->script('jquery-1.4.2.min.js', array('inline' => false)); ?>
+<?php $this->Html->script('jquery-1.4.3.min.js', array('inline' => false)); ?>
 
 <h2>Confirm your order</h2>
 
