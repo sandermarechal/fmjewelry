@@ -292,12 +292,12 @@ fieldset {
     padding: 16px 20px;
     border: 1px solid #ddd;
         
-        legend {
-                font: {
-                        family: 'Josefin';
-                        size: font-scale(24px);
-                }
+    legend {
+        font: {
+            family: 'Josefin';
+            size: font-scale(24px);
         }
+    }
 }
 fieldset fieldset {
     margin-top: 0px;
@@ -467,3 +467,6 @@ td.actions a {
     padding: 4px 8px;
     text-align: left;
 }
+
+// Import fancybox styles
+@import "fancybox";

@@ -2,7 +2,6 @@
 $this->Html->script('jquery-1.4.3.min.js', array('inline' => false));
 $this->Html->script('jquery.fancybox-1.3.4.js', array('inline' => false));
 $this->Html->script('jquery.easing-1.3.pack.js', array('inline' => false));
-$this->Html->css('jquery.fancybox-1.3.4', null, array('inline' => false));
 ?>
 
 <?php echo $this->element('sidebar'); ?>
