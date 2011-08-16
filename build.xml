@@ -3,7 +3,11 @@
 
     <property file="build.properties" />
 
-    <target name="build" description="Build the application" depends="clean,css" />
+    <target name="build" description="Build the application" depends="clean,-prepare,css" />
+
+    <target name="-prepare">
+        <mkdir dir="${project.basedir}/build" />
+    </target>
     
     <target name="clean" description="Clean cache files">
         <delete>
@@ -12,6 +16,7 @@
                 <include name="persistent/cake_*" />
             </fileset>
         </delete>
+        <delete dir="${project.basedir}/build" includeemptydirs="true" />
     </target>
 
     <target name="-css-check" unless="css.force">
@@ -24,17 +29,40 @@
         </uptodate>
     </target>
 
-    <target name="css" depends="-css-check" unless="css.uptodate" description="Build CSS assets">
+    <target name="css" depends="-css-check,-prepare" unless="css.uptodate" description="Build CSS assets">
         <!-- Create directory because it may not exist in a fresh checkout -->
         <mkdir dir="${sass.builddir}" />
 
         <!-- Compile SASS/SCSS -->
-        <exec command="${sass.bin} --style ${sass.style} --update ${sass.assetdir}:${sass.builddir}"
+        <echo msg="${sass.bin} --style ${sass.style} --cache-location ${sass.cachedir} --update ${sass.assetdir}:${sass.builddir}" />
+        <exec command="${sass.bin} --style ${sass.style} --cache-location ${sass.cachedir} --update ${sass.assetdir}:${sass.builddir}"
               dir="${project.basedir}"
               logoutput="true"
               checkreturn="true"
         />
         <echo message="Rebuilt CSS assets" />
+    </target>
+
+    <target name="-js-check" unless="js.force">
+        <uptodate property="js.uptodate" targetfile="${js.builddir}/main.js">
+            <fileset dir="${js.assetdir}">
+                <include name="*.js" />
+            </fileset>
+        </uptodate>
+    </target>
+
+    <target name="js" depends="-js-check,-prepare" unless="js.uptodate" description="Build JS assets">
+        <delete file="${js.builddir}/main.js" />
+        <includepath classpath="${js.classpath}" />
+        <append destFile="${js.builddir}/main.js">
+            <filterchain>
+                <filterreader classname="phing.filters.YuiCompressorFilter">
+                    <param name="type" value="js" />
+                </filterreader>
+            </filterchain>
+            <filelist dir="${js.assetdir}" files="jquery.fancybox-1.3.4.js,jquery.easing-1.3.js,jquery.mousewheel-3.0.4.js" />
+        </append>
+        <echo message="Rebuilt JS assets" />
     </target>
 
 </project>

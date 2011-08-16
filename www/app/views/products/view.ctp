@@ -1,7 +1,6 @@
 <?php
-$this->Html->script('jquery-1.6.2.min.js', array('inline' => false));
-$this->Html->script('jquery.fancybox-1.3.4.js', array('inline' => false));
-$this->Html->script('jquery.easing-1.3.pack.js', array('inline' => false));
+$this->Html->script('//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js', array('inline' => false));
+$this->Html->script('main.js', array('inline' => false));
 ?>
 
 <?php echo $this->element('sidebar'); ?>

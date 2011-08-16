@@ -1,4 +1,4 @@
-<?php $this->Html->script('jquery-1.6.2.min.js', array('inline' => false)); ?>
+<?php $this->Html->script('//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.js', array('inline' => false)); ?>
 
 <h2>Confirm your order</h2>
 
